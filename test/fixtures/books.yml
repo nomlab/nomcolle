@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  title: MyString
+  author: MyString
+  publisher: MyString
+  isbn13: MyString
+  price: 1
+  page: 1
+  width: 1
+  height: 1
+  depth: 1
+  image_id: 1
+  status: 1
+
+two:
+  title: MyString
+  author: MyString
+  publisher: MyString
+  isbn13: MyString
+  price: 1
+  page: 1
+  width: 1
+  height: 1
+  depth: 1
+  image_id: 1
+  status: 1

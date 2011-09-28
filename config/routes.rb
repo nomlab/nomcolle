@@ -1,4 +1,16 @@
 Nomcolle::Application.routes.draw do
+  resources :images
+
+  resources :subscription_requests
+
+  resources :reviews
+
+  resources :histories
+
+  resources :users
+
+  resources :books
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

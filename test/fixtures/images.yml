@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  book: 
+  path: MyString
+
+two:
+  book: 
+  path: MyString

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  book: 
+  user: 
+  description: MyText
+  stars: 1
+
+two:
+  book: 
+  user: 
+  description: MyText
+  stars: 1

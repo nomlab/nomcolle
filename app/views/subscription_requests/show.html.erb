@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Book:</b>
+  <%= @subscription_request.book %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @subscription_request.user %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @subscription_request.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_subscription_request_path(@subscription_request) %> |
+<%= link_to 'Back', subscription_requests_path %>
