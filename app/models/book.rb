@@ -9,8 +9,18 @@ class Book < ActiveRecord::Base
   before_validation :complete_attributes_from_amazon
   validates_presence_of :title
 
+  def asin
+    return isbn_to_asin(self.isbn13)
+  end
+
+  def amazon_url
+    return "http://www.amazon.co.jp/dp/#{self.asin}"
+  end
+
+  private
   def complete_attributes_from_amazon
     isbn = self.isbn13
+    return nil unless (isbn.length == 10 || isbn.length == 13)
     return nil if self.id.present? or isbn.blank? or self.title.present?
     amazon_info = retrieve_info_from_amazon(isbn_to_asin(isbn))
     image = Image.create(:path => amazon_info[:image_url])
@@ -20,8 +30,6 @@ class Book < ActiveRecord::Base
   end
 
   def isbn_to_asin(isbn)
-    return nil unless (isbn.length == 10 || isbn.length == 13)
-
     isbn10 = isbn[3..-1]  if isbn.length == 13 # shrink to ISBN10
     asin = isbn10[0..-2] + asin_check_digit(isbn10)
 
