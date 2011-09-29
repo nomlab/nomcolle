@@ -80,4 +80,26 @@ class BooksController < ApplicationController
       format.json { head :ok }
     end
   end
+
+  def new_from_isbn
+    @book = Book.new
+   
+    respond_to do |format|
+      format.html      
+      format.json { render json: @book }
+    end
+  end
+
+  def create_from_isbn 
+    @book = Book.create_from_isbn(params[:isbn])
+    respond_to do |format|
+      if @book
+        format.html { redirect_to @book, notice: 'Book was successfully created.' }
+        format.json { render json: @book, status: :created, location: @book }
+      else
+        format.html { render action: "new_from_isbn" }
+        format.json { render json: @book.errors, status: :unprocessable_entity }
+      end
+    end
+  end
 end
