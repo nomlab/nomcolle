@@ -9,6 +9,11 @@ Nomcolle::Application.routes.draw do
 
   resources :users
 
+  controller "books", :path=>"books"  do
+    get "new_from_isbn"
+    post "create_from_isbn"
+  end
+
   resources :books
 
   # The priority is based upon order of creation:
