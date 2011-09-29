@@ -10,7 +10,6 @@ one:
   width: 1
   height: 1
   depth: 1
-  image_id: 1
   status: 1
 
 two:
@@ -23,5 +22,4 @@ two:
   width: 1
   height: 1
   depth: 1
-  image_id: 1
   status: 1

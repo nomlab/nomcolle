@@ -10,7 +10,6 @@ class CreateBooks < ActiveRecord::Migration
       t.integer :width
       t.integer :height
       t.integer :depth
-      t.integer :image_id
       t.integer :status
 
       t.timestamps

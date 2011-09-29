@@ -10,7 +10,6 @@ rails generate scaffold Book \
     width:integer \
     height:integer \
     depth:integer \
-    image_id:integer \
     status:integer
 
 rails generate scaffold User \
