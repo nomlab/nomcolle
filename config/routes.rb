@@ -1,4 +1,8 @@
 Nomcolle::Application.routes.draw do
+  root :to => "welcome#index"
+
+  match "welcome/:action" => "welcome#:action"
+
   resources :images
 
   resources :subscription_requests
