@@ -2,17 +2,8 @@
 
 <table>
   <tr>
-    <th>Title</th>
-    <th>Author</th>
-    <th>Publisher</th>
-    <th>Isbn13</th>
-    <th>Price</th>
-    <th>Page</th>
-    <th>Width</th>
-    <th>Height</th>
-    <th>Depth</th>
-    <th>Image</th>
-    <th>Status</th>
+    <th></th>
+    <th>Title/Author</th>
     <th></th>
     <th></th>
     <th></th>
@@ -20,17 +11,11 @@
 
 <% @books.each do |book| %>
   <tr>
-    <td><%= book.title %></td>
-    <td><%= book.author %></td>
-    <td><%= book.publisher %></td>
-    <td><%= book.isbn13 %></td>
-    <td><%= book.price %></td>
-    <td><%= book.page %></td>
-    <td><%= book.width %></td>
-    <td><%= book.height %></td>
-    <td><%= book.depth %></td>
-    <td><%= book.image_id %></td>
-    <td><%= book.status %></td>
+    <td><%= image_tag(book.image.path) unless (book.image == nil) %></td>
+    <td>
+      <%= book.title %><br />
+      <%= book.author %>
+    </td>
     <td><%= link_to 'Show', book %></td>
     <td><%= link_to 'Edit', edit_book_path(book) %></td>
     <td><%= link_to 'Destroy', book, confirm: 'Are you sure?', method: :delete %></td>
