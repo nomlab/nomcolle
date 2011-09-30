@@ -90,10 +90,20 @@ class BooksController < ApplicationController
     end
   end
 
-  def create_from_isbn 
-    @book = Book.create_from_isbn(params[:isbn])
+  def new_from_plural_isbn
+    @book = Book.new
+
     respond_to do |format|
-      if @book
+      format.html
+      format.json { render json: @book }
+    end
+  end
+
+  def create_from_isbn 
+    @book = Book.create({:isbn13 => params[:isbn]})
+
+    respond_to do |format|
+      unless @book.id == nil
         format.html { redirect_to @book, notice: 'Book was successfully created.' }
         format.json { render json: @book, status: :created, location: @book }
       else
@@ -102,4 +112,47 @@ class BooksController < ApplicationController
       end
     end
   end
+
+  def create_from_plural_isbn
+    @book = Book.new
+    count_before = Book.count
+    isbns = []
+    created_books_id = []
+    flag = true
+    params[:plural_isbn].each_line do |isbn|
+      isbn.chomp!
+      isbns << {:isbn13 => isbn} unless  isbn == ""
+    end
+
+    if isbns.size == 0
+      @book.errors.add(:isbn, "is not inputted")
+      flag = false
+    end
+ 
+    begin
+      Book.transaction do
+        isbns.each do |isbn|
+          book = Book.create(isbn)
+          if book.id == nil
+            raise ActiveRecord::RecordInvalid.new(book)
+          end
+        end
+      end
+
+    rescue
+      flag = false
+      @book.errors.add(:isbn, "is not currect")
+    end
+
+    respond_to do |format|
+      if flag
+        format.html { redirect_to books_url, notice: "#{Book.count - count_before} books was registered." }
+        format.json { render json: @book, status: :created, location: @book }
+      else
+        format.html { render action: "new_from_plural_isbn" }
+        format.json { render json: @book.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+    
 end
