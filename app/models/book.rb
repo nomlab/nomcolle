@@ -52,6 +52,9 @@ class Book < ActiveRecord::Base
 
   def retrieve_info_from_amazon(asin)
     items = Amazon::Ecs.item_lookup(asin).first_item
+
+    return nil if (items == nil)
+
     item = items.get_element('ItemAttributes')
 
     return nil if (item == nil)
