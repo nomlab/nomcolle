@@ -23,8 +23,8 @@ class Book < ActiveRecord::Base
     return nil unless (isbn.length == 10 || isbn.length == 13)
     return nil if self.id.present? or isbn.blank? or self.title.present?
     amazon_info = retrieve_info_from_amazon(isbn_to_asin(isbn))
-    image = Image.create(:path => amazon_info[:image_url])
-    amazon_info.delete(:image_url)
+    image = Image.create(:path => amazon_info[:image_url]) unless ( amazon_info[:image_url] == nil )
+    amazon_info.delete(:image_url) unless ( amazon_info[:image_url] == nil )
     self.update_attributes(amazon_info)
     self.image = image
   end
@@ -59,6 +59,9 @@ class Book < ActiveRecord::Base
 
     return nil if (item == nil)
 
+    image_url = "http://g-ec2.images-amazon.com/images/G/09/nav2/dp/no-image-avail-img-map._V192260068_AA300_.gif"
+    image_url = items.get_hash('MediumImage')['URL'].toutf8 unless ( items.get_hash('MediumImage') == nil )
+
     info = {
       :title     => CGI::unescapeHTML(item.get('Title').toutf8),
       :author    => CGI::unescapeHTML(item.get_array('Author').join(', ').toutf8),
@@ -69,8 +72,9 @@ class Book < ActiveRecord::Base
       :width     => item.get("PackageDimensions/Width"),
       :height    => item.get("PackageDimensions/Height"),
       :depth     => item.get("PackageDimensions/Length"),
-      :image_url => items.get_hash('MediumImage')['URL'].toutf8
+      :image_url => image_url
     }
+
     return info
   end
 end
