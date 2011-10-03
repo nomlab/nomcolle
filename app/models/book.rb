@@ -11,6 +11,7 @@ class Book < ActiveRecord::Base
 
   def complete_attributes_from_amazon
     isbn = self.isbn13
+    return nil unless (isbn.length == 10 || isbn.length == 13)
     return nil if self.id.present? or isbn.blank? or self.title.present?
     amazon_info = retrieve_info_from_amazon(isbn_to_asin(isbn))
     image = Image.create(:path => amazon_info[:image_url])
@@ -44,6 +45,9 @@ class Book < ActiveRecord::Base
 
   def retrieve_info_from_amazon(asin)
     items = Amazon::Ecs.item_lookup(asin).first_item
+
+    return nil if (items == nil)
+
     item = items.get_element('ItemAttributes')
 
     return nil if (item == nil)
