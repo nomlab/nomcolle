@@ -5,9 +5,16 @@ require 'cgi'
 require "kconv"
 
 class Book < ActiveRecord::Base
+  has_many :histories
+  has_many :reviews
+  has_many :subscription_requests
   has_one :image
+
   before_validation :complete_attributes_from_amazon
   validates_presence_of :title
+
+  before_save :stash_attributes
+  after_save :logging
 
   def asin
     return isbn_to_asin(self.isbn13)
@@ -17,7 +24,26 @@ class Book < ActiveRecord::Base
     return "http://www.amazon.co.jp/dp/#{self.asin}"
   end
 
+  def self.status_list
+    return ["登録", "購入希望","注文済み","貸し出し可能","貸し出し中","破棄", "その他"]
+  end
+
   private
+
+  def stash_attributes
+    @stash = self.attributes
+  end
+
+  def logging
+    params = {
+      :action => self.status,
+      :user_id => User.current.id,
+      :book_id => self.id
+    }
+    History.create(params)
+    @stash = nil
+  end
+
   def complete_attributes_from_amazon
     isbn = self.isbn13
     return nil unless (isbn.length == 10 || isbn.length == 13)

@@ -6,7 +6,16 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :login_name
   validates_presence_of :login_name, :password, :name
 
-
+  def borrowing
+    books = []
+    Book.where(:status => 4).each do |book|
+      last_act = book.histories.last
+      if last_act.action == 4 && last_act.user == User.current
+        books << book
+      end
+    end
+    return books
+  end
 
   def self.authenticate(login_name, password)
     if password.blank?

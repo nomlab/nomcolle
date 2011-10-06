@@ -1,4 +1,6 @@
+# -*- coding: utf-8 -*-
 class BooksController < ApplicationController
+
   # GET /books
   # GET /books.json
   def index
@@ -67,6 +69,33 @@ class BooksController < ApplicationController
         format.json { render json: @book.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def lend
+    @book = Book.find_by_id(params[:id])
+
+    case @book.status
+    when 3 #貸し出し可能
+      @book.update_attributes(:status => "4")
+      flash[:notice] = "#{@book.title} を借りました．"
+    else #それ以外
+      flash[:error] = "failed"
+    end
+    redirect_to :action => "index"
+  end
+
+  def return
+    @book = Book.find_by_id(params[:id])
+
+    case @book.status
+    when 4 #貸し出し中
+      @book.update_attributes(:status => "3")
+      flash[:error] = "#{@book.title} を返却しました．"
+    else #それ以外
+      flash[:error] = "failed"
+    end
+
+    redirect_to request.referer
   end
 
   # DELETE /books/1
