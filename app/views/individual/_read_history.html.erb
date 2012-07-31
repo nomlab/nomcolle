@@ -1,0 +1,19 @@
+<table>
+  <col class="title">
+  <col class="author">
+  <caption>読書履歴</caption>
+  <thead>
+    <tr>
+      <th>タイトル</th>
+      <th>著者</th>
+    </tr>
+  <thead>
+  <% @books = [] %>
+  <% @books << Book.find(1) %>
+  <% @books.each do |book| %>
+    <tr>
+      <td><%= book.title %></td>
+      <td><%= book.author %></td>
+    </tr>
+  <% end %>
+</table>

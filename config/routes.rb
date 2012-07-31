@@ -1,4 +1,6 @@
 Nomcolle::Application.routes.draw do
+  get "individual/index"
+
   root :to => "welcome#index"
 
   match "welcome/:action" => "welcome#:action"
@@ -18,6 +20,7 @@ Nomcolle::Application.routes.draw do
     get "new_from_plural_isbn"
     post "create_from_isbn"
     post "create_from_plural_isbn"
+    post "rent"
   end
 
   resources :books
