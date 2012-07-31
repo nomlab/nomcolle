@@ -10,6 +10,8 @@
 
 <h2>のむこれ</h2>
 <%= button_to "ログアウト", :controller => "welcome", :action => "logout" %>
+<%= link_to "ブックリスト", :controller => "books", :action => "index" %>
+<%= link_to "個人ページ", :controller => "individual", :action => "index" %>
 
 <p style="color: red"><%= flash[:error] %></p>
 <p style="color: green"><%= flash[:notice] %></p>

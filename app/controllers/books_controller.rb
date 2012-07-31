@@ -154,5 +154,23 @@ class BooksController < ApplicationController
       end
     end
   end
-    
+  
+  def rent
+    @book = Book.find(params[:id])
+    if @book.status == 1
+      @book.errors.add(:isbn, "is rented")
+    else
+      @book.status = 1
+    end
+    respond_to do |format|
+      if @book.save
+        format.html { redirect_to books_url, notice: 'Book was successfully changed.' }
+        format.json { render json: @book, status: :created, location: @book }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @book.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+        
 end
