@@ -7,6 +7,10 @@ Nomcolle::Application.routes.draw do
 
   resources :images
 
+  controller "subscription_requests", :path=>"subscription_requests" do
+    get "new_from_book_list"
+  end
+
   resources :subscription_requests
 
   resources :reviews
@@ -21,6 +25,7 @@ Nomcolle::Application.routes.draw do
     post "create_from_isbn"
     post "create_from_plural_isbn"
     post "rent"
+    post "return"
   end
 
   resources :books

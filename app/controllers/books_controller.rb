@@ -154,13 +154,16 @@ class BooksController < ApplicationController
       end
     end
   end
-  
+
+=begin  
   def rent
     @book = Book.find(params[:id])
     if @book.status == 1
       @book.errors.add(:isbn, "is rented")
     else
       @book.status = 1
+      history = History.new(:book_id => @book.id, :user_id => User.current, :action => 1)
+      history.save
     end
     respond_to do |format|
       if @book.save
@@ -172,5 +175,28 @@ class BooksController < ApplicationController
       end
     end
   end
-        
+=end
+
+  def return
+    @book = Book.find(params[:book_id])
+    subscription_request = SubscriptionRequest.find(params[:subscription_request_id])
+    if @book.status == 0
+      @book.errors.add(:isbn, "is returned")
+    else
+      @book.status = 0
+      history = History.new(:book_id => params[:book_id], :user_id => User.current.id, :action => 0)
+      history.save
+    end
+    
+    respond_to do |format|
+      if @book.save && subscription_request.destroy
+        format.html { redirect_to books_url, notice: 'Book was successfully changed.' }
+        format.json { render json: @book, status: :created, location: @book }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @book.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
 end

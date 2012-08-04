@@ -26,9 +26,11 @@
         <%= link_to 'Edit', edit_book_path(book) %><br />
         <%= link_to 'Destroy', book, confirm: 'Are you sure?',
           method: :delete %><br/ >
-        <%= form_tag(:action => :rent, :method => "post") do  %>
-          <%= hidden_field_tag 'id', book.id %>
-          <%= submit_tag "rent" %>
+<!--          <%= form_tag(:controller => "subscription_requests", :action => :new_from_book_list, :method => "post") do  %>
+          <%= hidden_field_tag 'book_id', book.id %>
+          <%= submit_tag "Rent" %>-->
+        <%= link_to 'Rent', :controller => "subscription_requests", :action => "new_from_book_list", :book => book %><br/>
+        <%= link_to 'Wirte Review', :controller => "reviews", :action => "new_from_book_list", :book => book %>
         <% end %>
     </td>
     <td>
