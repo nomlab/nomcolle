@@ -16,7 +16,16 @@
     <td><%= review.book.title %></td>
     <td><%= review.user.name %></td>
     <td><%= review.description %></td>
-    <td><%= review.stars %></td>
+    <td><% i = 0 %>
+        <% while( i < 10 ) %>
+          <% if( i < review.stars ) %>
+            <%= "★" %>
+          <% else %>
+            <%= "☆" %>
+          <% end %>
+          <% i += 1 %>
+        <% end %>
+    </td>
     <td><%= link_to 'Show', review %></td>
     <td><%= link_to 'Edit', edit_review_path(review) %></td>
     <td><%= link_to 'Destroy', review, confirm: 'Are you sure?', method: :delete %></td>
