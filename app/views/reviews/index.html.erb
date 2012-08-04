@@ -4,18 +4,14 @@
   <tr>
     <th>Book</th>
     <th>User</th>
-    <th>Description</th>
     <th>Stars</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th colspan="3">操作</th>
   </tr>
 
 <% @reviews.each do |review| %>
-  <tr>
+  <tr onclick="$('#description<%= review.id %>').toggle();">
     <td><%= review.book.title %></td>
     <td><%= review.user.name %></td>
-    <td><%= review.description %></td>
     <td><% i = 0 %>
         <% while( i < 10 ) %>
           <% if( i < review.stars ) %>
@@ -29,6 +25,9 @@
     <td><%= link_to 'Show', review %></td>
     <td><%= link_to 'Edit', edit_review_path(review) %></td>
     <td><%= link_to 'Destroy', review, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+  <tr id="description<%= review.id %>" style="display: none;">
+    <td colspan="6"><%= review.description %></td>
   </tr>
 <% end %>
 </table>
