@@ -1,19 +1,25 @@
 <table>
   <col class="title">
   <col class="author">
-  <caption>読書履歴</caption>
+  <!--<caption>読書履歴</caption>-->
   <thead>
     <tr>
       <th>タイトル</th>
       <th>著者</th>
+      <th>ページ数</th>
+      <th>厚さ</th>
+      <th>値段</th>
     </tr>
-  <thead>
-  <% @books = [] %>
-  <% @books << Book.find(1) %>
-  <% @books.each do |book| %>
+  </thead>
+    
+  <% @histories.each do |history| %>
+    <% book = Book.find(history.book_id) %>
     <tr>
       <td><%= book.title %></td>
       <td><%= book.author %></td>
+      <td><%= book.page %><%= "ページ"%></td>
+      <td><%= book.depth %><%= "mm" %></td>
+      <td><%= book.price %><%= "円" %></td>      
     </tr>
   <% end %>
 </table>

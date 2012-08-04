@@ -1,0 +1,31 @@
+<table>
+  <title>Review</title>
+  <thead>
+<!--  <caption>
+    <h2>Review</h2>
+  </caption>-->
+  </thead>
+  
+  <th>Num</th>
+  <th>Title</th>
+  <th>Review</th>
+  <th>Star</th>
+  <th>Command</th>
+    <% n = 0 %>
+    <% @reviews.each do |review| %>
+    <% n += 1 %>
+     <tr>
+       <td><%= n %></td>
+       <td><%= review.book.title %></td>
+       <td><%= review.description %></td>
+       <td><%= "star" %></td>
+       <td>
+         <%= link_to 'Edit', edit_review_path(review) %><br />
+         <%= link_to 'Destroy', review, confirm: 'Are you sure?',
+           method: :delete %><br/ >
+       </td>
+     </tr>
+     <% end %>
+   </tr>
+ </tr>
+</table>
