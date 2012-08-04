@@ -13,6 +13,10 @@ Nomcolle::Application.routes.draw do
 
   resources :subscription_requests
 
+  controller "reviews", :path=>"reviews" do
+    get "new_from_book_list"
+  end
+  
   resources :reviews
 
   resources :histories

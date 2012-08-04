@@ -1,0 +1,23 @@
+<table>
+  <title>Review</title>
+<!--  <caption>
+    <h2>Review</h2>
+  </caption>-->
+  <th>Num</th>
+  <th>User</th>
+  <th>Review</th>
+  <th>Star</th>
+    <% n = 0 %>
+    <% reviews = @book.review %>
+    <% reviews.each do |review| %>
+      <% n += 1 %>
+      <tr>
+        <td><%= n %></td>
+        <td><%= review.user.name %></td>
+        <td><%= review.description %></td>
+        <td><%= "star" %></td>
+      </tr>
+   <% end %>
+   </tr>
+ </tr>
+</table>

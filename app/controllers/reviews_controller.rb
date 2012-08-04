@@ -80,4 +80,14 @@ class ReviewsController < ApplicationController
       format.json { head :ok }
     end
   end
+  
+  def new_from_book_list
+    @review = Review.new
+    @book = Book.find(params[:book])
+    
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @subscription_request }
+    end
+  end
 end

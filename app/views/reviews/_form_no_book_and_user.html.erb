@@ -12,12 +12,12 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :book_id %><br />
-    <%= f.text_field :book_id %>
+    <%= f.label :book %><br />
+    <%= f.hidden_field :book_id, :value => @book.id %>
   </div>
   <div class="field">
     <%= f.label :user_id %><br />
-    <%= f.text_field :user_id %>
+    <%= f.hidden_field :user_id , :value => User.current.id %>
   </div>
   <div class="field">
     <%= f.label :description %><br />
