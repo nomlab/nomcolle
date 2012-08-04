@@ -4,7 +4,7 @@
     <tr>
       <th>タイトル</th>
       <th>著者</th>
-      <th>botton</th>
+      <th>操作</th>
     </tr>
   <thead>
 
@@ -18,7 +18,7 @@
         <%= form_tag(:controller => :books, :action => :return, :method => "post") do  %>
         <%= hidden_field_tag 'book_id', book.id %>
         <%= hidden_field_tag 'subscription_request_id', request.id %>
-        <%= submit_tag "return" %>
+        <%= submit_tag "返却" %>
       </td>
     <% end %>
   <% end %>
