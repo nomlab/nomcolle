@@ -48,6 +48,9 @@
   <%= @book.status %>
 </p>
 
+<h2>Review</h2>
+  <%= render :partial => "review" %>
+  
 
 <%= link_to 'Edit', edit_book_path(@book) %> |
 <%= link_to 'Back', books_path %>

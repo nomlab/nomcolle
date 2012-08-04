@@ -12,8 +12,8 @@
 
 <% @subscription_requests.each do |subscription_request| %>
   <tr>
-    <td><%= subscription_request.book %></td>
-    <td><%= subscription_request.user %></td>
+    <td><%= subscription_request.book.title %></td>
+    <td><%= subscription_request.user.name %></td>
     <td><%= subscription_request.description %></td>
     <td><%= link_to 'Show', subscription_request %></td>
     <td><%= link_to 'Edit', edit_subscription_request_path(subscription_request) %></td>

@@ -6,6 +6,7 @@ require "kconv"
 
 class Book < ActiveRecord::Base
   has_one :image
+  has_many :review
   before_validation :complete_attributes_from_amazon
   validates_presence_of :title
 

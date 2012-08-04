@@ -5,6 +5,7 @@
     <th>Thumbnail</th>
     <th>Title/Author</th>
     <th>Command</th>
+    <th>Status</th>
   </tr>
 
 <% @books.each do |book| %>
@@ -16,7 +17,7 @@
     <td class="title">
       <%= book.title %><br />
       <%= book.author %><br />
-      <%= book.publisher %>
+      <%= book.publisher %><br />
     </td>
 
     <td class="command">
@@ -24,7 +25,20 @@
         <%= link_to 'Show', book %><br />
         <%= link_to 'Edit', edit_book_path(book) %><br />
         <%= link_to 'Destroy', book, confirm: 'Are you sure?',
-          method: :delete %>
+          method: :delete %><br/ >
+<!--          <%= form_tag(:controller => "subscription_requests", :action => :new_from_book_list, :method => "post") do  %>
+          <%= hidden_field_tag 'book_id', book.id %>
+          <%= submit_tag "Rent" %>-->
+        <%= link_to 'Rent', :controller => "subscription_requests", :action => "new_from_book_list", :book => book %><br/>
+        <%= link_to 'Wirte Review', :controller => "reviews", :action => "new_from_book_list", :book => book %>
+        <% end %>
+    </td>
+    <td>
+      <% if book.status == 0 %>
+        <%= "あるよ" %>
+      <% elsif book.status == 1 %>
+        <%= "貸し出し中" %>
+      <% end %>
     </td>
   </tr>
 <% end %>
