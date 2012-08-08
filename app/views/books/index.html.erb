@@ -8,7 +8,7 @@
     <th>Status</th>
   </tr>
 
-<% @books.each do |book| %>
+<% @books.reverse_each do |book| %>
   <tr>
     <td class="thum"><center>
     <%= image_tag(book.image.path) unless (book.image == nil) %>
@@ -50,3 +50,5 @@
   <%= link_to 'New Book from Plural ISBN', new_from_plural_isbn_path %><br />
 </div>
 </table>
+
+<%= will_paginate(@books) %>
