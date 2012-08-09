@@ -30,7 +30,8 @@
           <%= hidden_field_tag 'book_id', book.id %>
           <%= submit_tag "Rent" %>-->
         <%= link_to 'Rent', :controller => "subscription_requests", :action => "new_from_book_list", :book => book %><br/>
-        <%= link_to 'Wirte Review', :controller => "reviews", :action => "new_from_book_list", :book => book %>
+        <%= link_to 'Wirte Review', :controller => "reviews", :action => "new_from_book_list", :book => book %><br/>
+        <%= link_to 'List of Subscription Requests', :controller => "books", :action => "list_subscription_requests", :book => book %>
         <% end %>
     </td>
     <td>

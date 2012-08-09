@@ -180,6 +180,7 @@ class BooksController < ApplicationController
   def return
     @book = Book.find(params[:book_id])
     subscription_request = SubscriptionRequest.find(params[:subscription_request_id])
+    subscription_request.return_date = Date.today
     if @book.status == 0
       @book.errors.add(:isbn, "is returned")
     else
@@ -189,13 +190,23 @@ class BooksController < ApplicationController
     end
     
     respond_to do |format|
-      if @book.save && subscription_request.destroy
+      if @book.save && subscription_request.save
         format.html { redirect_to books_url, notice: 'Book was successfully changed.' }
         format.json { render json: @book, status: :created, location: @book }
       else
         format.html { render action: "new" }
         format.json { render json: @book.errors, status: :unprocessable_entity }
       end
+    end
+  end
+  
+  def list_subscription_requests
+    @book = Book.find(params[:book])
+    @subscription_requests = SubscriptionRequest.where(:book_id => @book.id)
+    
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @subscription_requests }
     end
   end
 

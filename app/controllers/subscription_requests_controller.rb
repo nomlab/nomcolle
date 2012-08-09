@@ -46,6 +46,7 @@ class SubscriptionRequestsController < ApplicationController
     end
     book = Book.find(@subscription_request.book.id)
     book.status = 1
+    @subscription_request.rental_date = Date.today
 
     respond_to do |format|
       if @subscription_request.book.status != 1 && @subscription_request.save && book.save

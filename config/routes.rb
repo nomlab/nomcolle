@@ -26,6 +26,7 @@ Nomcolle::Application.routes.draw do
   controller "books", :path=>"books"  do
     get "new_from_isbn"
     get "new_from_plural_isbn"
+    get "list_subscription_requests"
     post "create_from_isbn"
     post "create_from_plural_isbn"
     post "rent"

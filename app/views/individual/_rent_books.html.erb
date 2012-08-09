@@ -8,7 +8,7 @@
     </tr>
   <thead>
 
-  <% @subscription_requests = SubscriptionRequest.where(:user_id => User.current.id) %>
+  <% @subscription_requests = SubscriptionRequest.where(:user_id => User.current.id, :return_date => nil) %>
   <% @subscription_requests.each do |request| %>
     <% book = request.book %>
     <tr>
