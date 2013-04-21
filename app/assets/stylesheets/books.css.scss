@@ -4,37 +4,44 @@
 
 table.books {
   position: relative;
-  left: 16em;
+  left: 18em;
   width: auto;
-//  margin: 5px auto;
   color: #0a6;
   background-color: #ff9;
   border-collapse: collapse;
   border-spacing: 0;
+  box-shadow:10px 10px 10px 10px rgba(0,0,0,0.4);
 }
 
-table.books th {
-  border: solid 1pt #f90;
-}
+table.books {
+  th {
+  }
 
-table.books tr {
-  border: solid 1px #f90;
-}
+  tr {
+    font-size: 120%;
+    border-bottom: 2px solid #f90;
+  }
 
-table.books td.thum {
-  width: 200px;
-}
+  td {
+    border-bottom: 2px solid #f90;
+  }
+  td.thum {
+      width: 200px;
+    }
 
-table.books td.title{
-  border: solid 2px #f90;
-  color: #000;
-  font-size: 1.5em;
-  font-weight: bold;
-  line-height: 1em;
-}
+  td.title{
+      color: #000;
+      font-size: 1.5em;
+      font-weight: bold;
+      line-height: 1em;
+  }
 
-table.books td.command{
-
+  td.command{
+    width: 120px;
+    a {
+      margin-left: 50px;
+    }
+  }
 }
 
 #side {
@@ -44,5 +51,7 @@ table.books td.command{
   padding-left: 1em;
   padding-bottom: 10em;
   width: 16em;
-  background: #f86;
+  background: #FFA07A;
+  border: solid 2px #FF7F50;;
+  box-shadow:10px 10px 10px 10px rgba(0,0,0,0.4);
 }

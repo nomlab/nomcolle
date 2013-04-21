@@ -8,8 +8,12 @@
 </head>
 <body>
 
-<h2>のむこれ</h2>
-<%= button_to "ログアウト", :controller => "welcome", :action => "logout" %>
+<div class="header">
+  <h1 class="title">のむこれ</h1>
+  <div class="logout">
+    <%= button_to "ログアウト", :controller => "welcome", :action => "logout" %>
+  </div>
+</div>
 
 <p style="color: red"><%= flash[:error] %></p>
 <p style="color: green"><%= flash[:notice] %></p>
