@@ -41,9 +41,15 @@ class SubscriptionRequestsController < ApplicationController
   # POST /subscription_requests.json
   def create
     @subscription_request = SubscriptionRequest.new(params[:subscription_request])
+    if @subscription_request.book.status == 1
+      @subscription_request.errors.add(:book, "is rented")
+    end
+    book = Book.find(@subscription_request.book.id)
+    book.status = 1
+    @subscription_request.rental_date = Date.today
 
     respond_to do |format|
-      if @subscription_request.save
+      if @subscription_request.book.status != 1 && @subscription_request.save && book.save
         format.html { redirect_to @subscription_request, notice: 'Subscription request was successfully created.' }
         format.json { render json: @subscription_request, status: :created, location: @subscription_request }
       else
@@ -78,6 +84,16 @@ class SubscriptionRequestsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to subscription_requests_url }
       format.json { head :ok }
+    end
+  end
+  
+  def new_from_book_list
+    @subscription_request = SubscriptionRequest.new
+    @book = Book.find(params[:book])
+    
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @subscription_request }
     end
   end
 end

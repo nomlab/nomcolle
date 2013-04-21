@@ -5,8 +5,8 @@ gem 'rails', '3.1.0'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
-gem 'therubyracer'
+gem 'sqlite3', '1.3.5'
+gem 'therubyracer', '0.9.9'
 gem 'amazon-ecs', '2.2.0'
 
 # Gems used only for assets and not required
@@ -32,3 +32,8 @@ group :test do
   # Pretty printed test output
   gem 'turn', :require => false
 end
+
+
+gem 'nokogiri', '1.5.0'
+gem 'json', '1.6.5'
+gem 'will_paginate'

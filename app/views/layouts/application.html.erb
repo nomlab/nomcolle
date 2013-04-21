@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Content-Language" content="ja">
   <title>Nomcolle</title>
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
@@ -12,6 +14,8 @@
   <h1 class="title">のむこれ</h1>
   <div class="logout">
     <%= button_to "ログアウト", :controller => "welcome", :action => "logout" %>
+    <%= link_to "ブックリスト", :controller => "books", :action => "index" %>
+    <%= link_to "個人ページ", :controller => "individual", :action => "index" %>
   </div>
 </div>
 

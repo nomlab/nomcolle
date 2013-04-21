@@ -44,6 +44,35 @@ table.books {
   }
 }
 
+table.subscription {
+  position: relative;
+  left: 16em;
+  width: auto;
+  background-color: #f0e68c;
+  border-collapse: collapse;
+  border-spacing: 0; 	
+}
+
+table.subscription th {
+  background-color: #f0e68c;
+}
+
+table.subscription th.head {
+  background-color: #f0e68c;
+  height: 10em;
+  border-bottom: 3px double black; /* ヘッダ行の下線 */
+}
+
+
+table.subscription tr {
+  background-color: #f0e68c;
+}
+
+table.subscription td.user {
+  width: 15em;
+}
+
+
 #side {
   float: left;
   position: fixed;

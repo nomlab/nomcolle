@@ -1,0 +1,13 @@
+<h1><%= User.current.name %>のページ</h1>
+
+<h2>ポイント</h2>
+  <%= render :partial => "point" %>
+  
+<h2>読書履歴</h2>
+  <%= render :partial => "read_history" %>
+
+<h2>借りている本一覧</h2>
+  <%= render :partial => "rent_books" %>
+  
+<h2>レビュー</h2>
+  <%= render :partial => "review" %>

@@ -1,12 +1,22 @@
 Nomcolle::Application.routes.draw do
+  get "individual/index"
+
   root :to => "welcome#index"
 
   match "welcome/:action" => "welcome#:action"
 
   resources :images
 
+  controller "subscription_requests", :path=>"subscription_requests" do
+    get "new_from_book_list"
+  end
+
   resources :subscription_requests
 
+  controller "reviews", :path=>"reviews" do
+    get "new_from_book_list"
+  end
+  
   resources :reviews
 
   resources :histories
@@ -16,8 +26,11 @@ Nomcolle::Application.routes.draw do
   controller "books", :path=>"books"  do
     get "new_from_isbn"
     get "new_from_plural_isbn"
+    get "list_subscription_requests"
     post "create_from_isbn"
     post "create_from_plural_isbn"
+    post "rent"
+    post "return"
   end
 
   resources :books

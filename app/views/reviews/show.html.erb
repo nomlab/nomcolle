@@ -16,8 +16,16 @@
 </p>
 
 <p>
-  <b>Stars:</b>
-  <%= @review.stars %>
+  <b>Stars:</b> 
+  <% i = 0 %>
+  <% while( i < 10 ) %>
+    <% if( i < @review.stars ) %>
+     <%= "★" %>
+    <% else %>
+     <%= "☆" %>
+    <% end %>
+  <% i += 1 %>
+  <% end %>
 </p>
 
 

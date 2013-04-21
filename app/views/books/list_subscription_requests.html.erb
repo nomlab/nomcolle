@@ -1,0 +1,23 @@
+<table class="subscription">
+<!--  <caption>借りている本一覧</caption>-->
+  <thead>
+    <tr>
+      <th colspan=3 class="head"><%= @book.title%></th>
+    </tr>
+  </thead>  
+    <tr>
+      <th>名前</th>
+      <th>貸出日</th>
+      <th>返却日</th>
+    </tr>
+    <% @subscription_requests = SubscriptionRequest.where(:user_id => User.current.id) %>
+    <% @subscription_requests.each do |request| %>
+    <% book = request.book %>
+    <tr>
+      <td class="user"><%= request.user.name %></td>
+      <td><%= request.rental_date.strftime("%Y/%m/%d") if request.rental_date != nil %></td>
+      <td><%= request.return_date.strftime("%Y/%m/%d") if request.return_date != nil %></td>
+    </tr>
+    <% end %>
+  
+</table>

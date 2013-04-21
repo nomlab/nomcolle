@@ -1,0 +1,28 @@
+<table class="read_history">
+  <col class="title">
+  <col class="author">
+  <col class="page">
+  <col class="depth">
+  <col class="price">
+  <!--<caption>読書履歴</caption>-->
+  <thead>
+    <tr>
+      <th>タイトル</th>
+      <th>著者</th>
+      <th>ページ数</th>
+      <th>厚さ</th>
+      <th>値段</th>
+    </tr>
+  </thead>
+    
+  <% @histories.each do |history| %>
+    <% book = Book.find(history.book_id) %>
+    <tr>
+      <td class="title"><%= book.title %></td>
+      <td class="author"><%= book.author %></td>
+      <td class="page"><%= book.page %><%= "ページ"%></td>
+      <td class="depth"><%= book.depth %><%= "mm" %></td>
+      <td class="price"><%= book.price %><%= "円" %></td>      
+    </tr>
+  <% end %>
+</table>

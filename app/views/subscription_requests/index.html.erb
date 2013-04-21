@@ -5,6 +5,8 @@
     <th>Book</th>
     <th>User</th>
     <th>Description</th>
+    <th>貸出日</th>
+    <th>返却日</th>
     <th></th>
     <th></th>
     <th></th>
@@ -12,9 +14,11 @@
 
 <% @subscription_requests.each do |subscription_request| %>
   <tr>
-    <td><%= subscription_request.book %></td>
-    <td><%= subscription_request.user %></td>
+    <td><%= subscription_request.book.title %></td>
+    <td><%= subscription_request.user.name %></td>
     <td><%= subscription_request.description %></td>
+    <td><%= subscription_request.rental_date.strftime("%Y/%m/%d") if subscription_request.rental_date != nil %></td>
+    <td><%= subscription_request.return_date.strftime("%Y/%m/%d") if subscription_request.return_date != nil %></td>
     <td><%= link_to 'Show', subscription_request %></td>
     <td><%= link_to 'Edit', edit_subscription_request_path(subscription_request) %></td>
     <td><%= link_to 'Destroy', subscription_request, confirm: 'Are you sure?', method: :delete %></td>

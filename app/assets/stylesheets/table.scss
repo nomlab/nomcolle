@@ -1,0 +1,61 @@
+th {
+  font-weight: bold;
+  border: 1px solid #777777;
+  background-color: #8899FF;
+  padding: 3px;
+  border-bottom: 0px;
+  border-right: 0px;
+}
+
+td {
+  border-top: 1px solid #777777;
+  padding: 3px;
+}
+
+tr {
+  background-color: aliceblue;
+}
+
+table {
+  border-collapse: separate;
+  border-spacing: 0px;
+  empty-cells: show;
+  margin-bottom: 6px;
+  border: 1px solid #0000AA;
+  border-top: 0px;
+}
+
+table.read_history col.title {
+  width: 40em;
+}
+
+table.read_history col.author {
+  width: 8em;
+}
+
+table.read_history col.page,
+table.read_history col.depth,
+table.read_history col.price {
+  width: 6em;
+}
+
+
+
+td.page,
+td.depth,
+td.price {
+  text-align: right;
+}
+
+
+table.top-list {
+  width: 100%;
+  table-layout: fixed;
+}
+
+
+
+col.title{ 
+  width: 5em;
+}
+

@@ -1,0 +1,26 @@
+<table>
+<!--  <caption>借りている本一覧</caption>-->
+  <thead>
+    <tr>
+      <th>タイトル</th>
+      <th>著者</th>
+      <th>操作</th>
+    </tr>
+  <thead>
+
+  <% @subscription_requests = SubscriptionRequest.where(:user_id => User.current.id, :return_date => nil) %>
+  <% @subscription_requests.each do |request| %>
+    <% book = request.book %>
+    <tr>
+      <td><%= book.title %></td>
+      <td><%= book.author %></td>
+      <td>
+        <%= form_tag(:controller => :books, :action => :return, :method => "post") do  %>
+        <%= hidden_field_tag 'book_id', book.id %>
+        <%= hidden_field_tag 'subscription_request_id', request.id %>
+        <%= submit_tag "返却" %>
+      </td>
+    <% end %>
+  <% end %>
+  
+</table>
