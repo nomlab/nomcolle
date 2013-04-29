@@ -1,29 +1,49 @@
-// th {
-//   font-weight: bold;
-//   border: 1px solid #777777;
-//   background-color: #F5DEB3;
-//   padding: 3px;
-//   border-bottom: 0px;
-//   border-right: 0px;
-// }
+/* table { */
+/*   border-collapse: separate; */
+/*   border-spacing: 0px; */
+/*   empty-cells: show; */
+/*   margin-bottom: 6px; */
+/*   border: 1px solid #0000AA; */
+/*   border-top: 0px; */
 
-// td {
-//   border-top: 1px solid #777777;
-//   padding: 3px;
-// }
+/*   th { */
+/*     font-weight: bold; */
+/*     border: 1px solid #777777; */
+/*     background-color: #F5DEB3; */
+/*     padding: 3px; */
+/*     border-bottom: 0px; */
+/*     border-right: 0px; */
+/*   } */
+  
+/*   td { */
+/*     border-top: 1px solid #777777; */
+/*     padding: 3px; */
+/*   } */
+  
+/*   tr { */
+/*     background-color: aliceblue; */
+/*   } */
+/* } */
 
-// tr {
-//   background-color: aliceblue;
-// }
+table.subscription {
+  border-collapse: separate;
+  border-spacing: 0px;
+  empty-cells: show;
+  margin-bottom: 6px;
+  border: 1px solid #0000AA;
+  border-top: 1px solid;
+  th {
+    font-weight: bold;
+    padding: 3px;
+    border-bottom: 0px;
+    border-right: 0px;
+  }
 
-// table {
-//   border-collapse: separate;
-//   border-spacing: 0px;
-//   empty-cells: show;
-//   margin-bottom: 6px;
-//   border: 1px solid #0000AA;
-//   border-top: 0px;
-// }
+  td {
+    border-top: 1px solid;
+    padding: 3px;
+  }  
+}
 
 table.point {
   background-color: white;
@@ -34,7 +54,9 @@ table.point {
   margin-bottom: 30px;
 
   caption {
-    padding: 5px 150px 10px 0px;
+    text-align: left;
+    margin-left: 10px;
+    margin-bottom: 10px;
     font-size: 30px;
     caption-side: top;
   }
@@ -51,13 +73,15 @@ table.read_history {
   margin-bottom: 30px;
 
   caption {
-    padding: 5px 750px 10px 0px;
+    text-align: left;
+    margin-left: 10px;
+    margin-bottom: 10px;
     font-size: 30px;
     caption-side: top;
   }
 
   col.title {
-    width: 40em;
+    width: 30em;
   }
 
   col.author {
@@ -79,7 +103,9 @@ table.rent_book {
   margin-bottom: 30px;
 
   caption {
-    padding: 5px 300px 10px 0px;
+    text-align: left;
+    margin-left: 10px;
+    margin-bottom: 10px;
     font-size: 30px;
     caption-side: top;
   }
@@ -96,7 +122,9 @@ table.review {
   margin-bottom: 30px;
 
   caption {
-    padding: 5px 650px 10px 0px;
+    text-align: left;
+    margin-left: 10px;
+    margin-bottom: 10px;
     font-size: 30px;
     caption-side: top;
   }

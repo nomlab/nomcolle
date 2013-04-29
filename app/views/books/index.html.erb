@@ -2,10 +2,10 @@
 
 <table class="books">
   <tr>
-    <th><%= tc("word", "thumbnail") %></th>
-    <th><%= tc("word", "title_and_author") %></th>
-    <th><%= tc("word", "command") %></th>
-    <th><%= tc("word", "status") %></th>
+    <th class="thum"><%= tc("word", "thumbnail") %></th>
+    <th class="title"><%= tc("word", "title_and_author") %></th>
+    <th class="command"><%= tc("word", "command") %></th>
+    <th class="status"><%= tc("word", "status") %></th>
   </tr>
 
 <% @books.each do |book| %>
@@ -46,10 +46,20 @@
 
 <br />
 <div id="side">
-  <%= link_to 'New Book', new_book_path %><br />
-  <%= link_to 'New Book from ISBN', new_from_isbn_path %><br/ >
-  <%= link_to 'New Book from Plural ISBN', new_from_plural_isbn_path %><br />
+  <div id="side_link">
+    <div id="side_item">
+      <%= link_to 'New Book', new_book_path %>
+    </div>
+    <div id="side_item">
+      <%= link_to 'New Book from ISBN', new_from_isbn_path %><br/ >
+    </div>
+    <div id="side_item">
+      <%= link_to 'New Book from Plural ISBN', new_from_plural_isbn_path %><br />
+    </div>
+  </div>
 </div>
 </table>
 
+<br/>
+<br/>
 <%= will_paginate(@books) %>

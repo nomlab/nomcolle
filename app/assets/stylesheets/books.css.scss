@@ -3,19 +3,21 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 table.books {
+  table-layout: fixed;
   position: relative;
   left: 18em;
-  width: auto;
+// width: auto;
+  width: 1000px;
   //color: #0a6;
   background-color: #ff9;
   border-collapse: collapse;
   border-spacing: 0;
+  border-radius: 5px;
   box-shadow:10px 10px 10px 10px rgba(0,0,0,0.4);  
-}
 
-table.books {
-  th {
-  }
+  th.thum { width: 180px; }
+  th.title { width: 570px; }
+  th.command { width: 150px; }
 
   tr {
     font-size: 120%;
@@ -25,15 +27,19 @@ table.books {
   td {
     border-bottom: 2px solid #f90;
   }
+
   td.thum {
       width: 180px;
-    }
+      padding-top: 10px;
+      padding-bottom: 10px;
+  }
 
   td.title{
       color: #000;
       font-size: 1.5em;
       font-weight: bold;
       line-height: 1em;
+      width: 570px;
   }
 
   td.command{
@@ -76,11 +82,24 @@ table.subscription td.user {
 #side {
   float: left;
   position: absolute;
-  padding-top: 1em;
-  padding-left: 1em;
+  padding-top: 1.5em;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
   padding-bottom: 10em;
   width: 16em;
+  border-radius: 10px;
   background: #FFA07A;
-  border: solid 2px #FF7F50;;
+//  border: solid 2px #FF7F50;
 //  box-shadow:10px 10px 10px 10px rgba(0,0,0,0.4);
+}
+
+#side_link {
+  padding-left: 1em;
+  border-radius: 15px;
+  border: medium #FF7F50 solid;
+  background-color: white;
+}
+
+#side_item {
+  margin-bottom: 0.5em;
 }
