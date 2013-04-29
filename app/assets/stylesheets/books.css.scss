@@ -6,11 +6,11 @@ table.books {
   position: relative;
   left: 18em;
   width: auto;
-  color: #0a6;
+  //color: #0a6;
   background-color: #ff9;
   border-collapse: collapse;
   border-spacing: 0;
-  box-shadow:10px 10px 10px 10px rgba(0,0,0,0.4);
+  box-shadow:10px 10px 10px 10px rgba(0,0,0,0.4);  
 }
 
 table.books {
@@ -26,7 +26,7 @@ table.books {
     border-bottom: 2px solid #f90;
   }
   td.thum {
-      width: 200px;
+      width: 180px;
     }
 
   td.title{
@@ -37,9 +37,9 @@ table.books {
   }
 
   td.command{
-    width: 120px;
+    width: 150px;
     a {
-      margin-left: 50px;
+      margin-left: 5px;
     }
   }
 }
@@ -75,12 +75,12 @@ table.subscription td.user {
 
 #side {
   float: left;
-  position: fixed;
+  position: absolute;
   padding-top: 1em;
   padding-left: 1em;
   padding-bottom: 10em;
   width: 16em;
   background: #FFA07A;
   border: solid 2px #FF7F50;;
-  box-shadow:10px 10px 10px 10px rgba(0,0,0,0.4);
+//  box-shadow:10px 10px 10px 10px rgba(0,0,0,0.4);
 }
