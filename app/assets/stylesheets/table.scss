@@ -1,45 +1,109 @@
-th {
-  font-weight: bold;
-  border: 1px solid #777777;
-  background-color: #F5DEB3;
-  padding: 3px;
-  border-bottom: 0px;
-  border-right: 0px;
+// th {
+//   font-weight: bold;
+//   border: 1px solid #777777;
+//   background-color: #F5DEB3;
+//   padding: 3px;
+//   border-bottom: 0px;
+//   border-right: 0px;
+// }
+
+// td {
+//   border-top: 1px solid #777777;
+//   padding: 3px;
+// }
+
+// tr {
+//   background-color: aliceblue;
+// }
+
+// table {
+//   border-collapse: separate;
+//   border-spacing: 0px;
+//   empty-cells: show;
+//   margin-bottom: 6px;
+//   border: 1px solid #0000AA;
+//   border-top: 0px;
+// }
+
+table.point {
+  background-color: white;
+  width: 300px;
+  border-radius: 15px;
+  border: medium #87CEFA solid;
+  margin-top: 30px;	  
+  margin-bottom: 30px;
+
+  caption {
+    padding: 5px 150px 10px 0px;
+    font-size: 30px;
+    caption-side: top;
+  }
+
+  tr {
+  }
 }
 
-td {
-  border-top: 1px solid #777777;
-  padding: 3px;
+table.read_history {
+  background-color: white;
+  width: 900px;
+  border-radius: 15px;
+  border: medium #87CEFA solid;
+  margin-bottom: 30px;
+
+  caption {
+    padding: 5px 750px 10px 0px;
+    font-size: 30px;
+    caption-side: top;
+  }
+
+  col.title {
+    width: 40em;
+  }
+
+  col.author {
+    width: 8em;
+  }
+
+  col.page,
+  col.depth,
+  col.price {
+    width: 6em;
+  }
 }
 
-tr {
-  background-color: aliceblue;
+table.rent_book {
+  background-color: white;
+  width: 500px;
+  border-radius: 15px;
+  border: medium #87CEFA solid;
+  margin-bottom: 30px;
+
+  caption {
+    padding: 5px 300px 10px 0px;
+    font-size: 30px;
+    caption-side: top;
+  }
+
+  tr {
+  }
 }
 
-table {
-  border-collapse: separate;
-  border-spacing: 0px;
-  empty-cells: show;
-  margin-bottom: 6px;
-  border: 1px solid #0000AA;
-  border-top: 0px;
+table.review {
+  background-color: white;
+  width: 800px;
+  border-radius: 15px;
+  border: medium #87CEFA solid;
+  margin-bottom: 30px;
+
+  caption {
+    padding: 5px 650px 10px 0px;
+    font-size: 30px;
+    caption-side: top;
+  }
+
+  tr {
+  }
 }
-
-table.read_history col.title {
-  width: 40em;
-}
-
-table.read_history col.author {
-  width: 8em;
-}
-
-table.read_history col.page,
-table.read_history col.depth,
-table.read_history col.price {
-  width: 6em;
-}
-
-
 
 td.page,
 td.depth,
@@ -52,8 +116,6 @@ table.top-list {
   width: 100%;
   table-layout: fixed;
 }
-
-
 
 col.title{ 
   width: 5em;
