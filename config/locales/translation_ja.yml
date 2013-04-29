@@ -2,10 +2,26 @@ ja:
   common:
     word:
       author: "著者"
+      command: "操作"
+      depth: "高さ"
       destroy: "削除"
       edit: "編集"
-      show: "詳細"
+      height: "縦幅"
+      num: "通番"
+      page: "ページ数"
+      price: "値段"
       rent: "貸出"
+      review: "レビュー"
+      show: "詳細"
+      star: "評価"
+      status: "ステータス"
+      thumbnail: "画像"
+      title: "タイトル"
+      title_and_author: "タイトル/著者"
+      total_page: "合計ページ数"
+      total_depth: "合計高"
+      total_price: "合計金額"      
+      width: "横幅"
 
     message:
       write_review: "レビューを書く"      
