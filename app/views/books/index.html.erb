@@ -22,16 +22,16 @@
 
     <td class="command">
         <%= link_to 'Amazon', book.amazon_url %><br />
-        <%= link_to 'Show', book %><br />
-        <%= link_to 'Edit', edit_book_path(book) %><br />
-        <%= link_to 'Destroy', book, confirm: 'Are you sure?',
+        <%= link_to tc("word", "show"), book %><br />
+        <%= link_to tc("word", "edit"), edit_book_path(book) %><br />
+        <%= link_to tc("word", "destroy"), book, confirm: 'Are you sure?',
           method: :delete %><br/ >
 <!--          <%= form_tag(:controller => "subscription_requests", :action => :new_from_book_list, :method => "post") do  %>
           <%= hidden_field_tag 'book_id', book.id %>
           <%= submit_tag "Rent" %>-->
-        <%= link_to 'Rent', :controller => "subscription_requests", :action => "new_from_book_list", :book => book %><br/>
-        <%= link_to 'Wirte Review', :controller => "reviews", :action => "new_from_book_list", :book => book %><br/>
-        <%= link_to 'List of Subscription Requests', :controller => "books", :action => "list_subscription_requests", :book => book %>
+        <%= link_to tc("word", "rent"), :controller => "subscription_requests", :action => "new_from_book_list", :book => book %><br/>
+        <%= link_to tc("message", "write_review"), :controller => "reviews", :action => "new_from_book_list", :book => book %><br/>
+        <%= link_to tc("message", "list_of_subscription_requests"), :controller => "books", :action => "list_subscription_requests", :book => book %>
         <% end %>
     </td>
     <td>

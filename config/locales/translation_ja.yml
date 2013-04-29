@@ -1,0 +1,68 @@
+ja:
+  common:
+    word:
+      author: "著者"
+      destroy: "削除"
+      edit: "編集"
+      show: "詳細"
+      rent: "貸出"
+
+    message:
+      write_review: "レビューを書く"      
+      list_of_subscription_requests: "貸出リストの閲覧"      
+
+  activerecord:
+    models:
+      book: book  "本"
+      history: history  "履歴"
+      image: image  "画像"
+      review: review  "レビュー"
+      subscription_request: subscription_request  "貸し出し"
+      user: user  "ユーザ"
+
+    attributes:
+      book:
+        author: "著者"
+        depth: "高さ"
+        height: "縦幅"
+        image: :activerecord.models.image  "画像"
+        isbn13: "isbn13"
+        page: "ページ数"
+        price: "価格"
+        publisher: "出版社"
+        review: "レビュー"
+        status: "ステータス"
+        title: "タイトル"
+        width: "横幅"
+
+      history:
+        action: "アクション"
+        book: "本"
+        user: "ユーザ"
+
+      image:
+        book: "本"
+        path: "パス"
+
+      review:
+        book: "本"
+        description: "詳細"
+        stars: "スター"
+        user: "ユーザ"
+
+      subscription_request:
+        book: "本"
+        description: "詳細"
+        rental_date: "貸出日"
+        return_date: "返却日"
+        user: "ユーザ"
+
+      user:
+        description: "詳細"
+        histories: "履歴"
+        login_name: "ログイン名"
+        name: "名前"
+        password: "パスワード"
+        reviews: "レビュー"
+        subscription_requests: "貸し出しリクエスト"
+
