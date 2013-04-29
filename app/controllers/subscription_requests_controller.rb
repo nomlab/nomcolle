@@ -42,7 +42,7 @@ class SubscriptionRequestsController < ApplicationController
   def create
     @subscription_request = SubscriptionRequest.new(params[:subscription_request])
     if @subscription_request.book.status == 1
-      @subscription_request.errors.add(:book, "is rented")
+      @subscription_request.errors.add(@subscription_request.book.title, " is rented")
     end
     book = Book.find(@subscription_request.book.id)
     book.status = 1
@@ -90,7 +90,9 @@ class SubscriptionRequestsController < ApplicationController
   def new_from_book_list
     @subscription_request = SubscriptionRequest.new
     @book = Book.find(params[:book])
-    
+    @subscription_request.book = @book
+    @subscription_request.user = User.current
+        
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @subscription_request }

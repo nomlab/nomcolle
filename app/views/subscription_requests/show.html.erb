@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <b>Book:</b>
   <%= @subscription_request.book %>
@@ -17,4 +15,4 @@
 
 
 <%= link_to 'Edit', edit_subscription_request_path(@subscription_request) %> |
-<%= link_to 'Back', subscription_requests_path %>
+<%= link_to 'Back', :controller => "books" %>
