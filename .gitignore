@@ -6,3 +6,4 @@ tmp/
 db/schema.rb
 *~
 \#*
+.ruby-gemset
