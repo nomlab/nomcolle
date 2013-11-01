@@ -54,3 +54,5 @@ gem 'less-rails'
 gem 'twitter-bootstrap-rails'
 gem 'execjs'
 gem 'therubyracer'
+
+gem 'amazon-ecs', '2.2.0'
