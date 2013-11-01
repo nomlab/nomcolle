@@ -3,7 +3,7 @@ Nomcolle::Application.routes.draw do
 
   root :to => "welcome#index"
 
-  match "welcome/:action" => "welcome#:action"
+  get "welcome/:action" => "welcome#:action"
 
   resources :images
 
@@ -16,7 +16,7 @@ Nomcolle::Application.routes.draw do
   controller "reviews", :path=>"reviews" do
     get "new_from_book_list"
   end
-  
+
   resources :reviews
 
   resources :histories
