@@ -5,5 +5,4 @@ tmp/
 .sass-cache/
 db/schema.rb
 *~
-Gemfile.lock
 \#*
