@@ -4,6 +4,7 @@ Nomcolle::Application.routes.draw do
   root :to => "welcome#index"
 
   get "welcome/:action" => "welcome#:action"
+  post "welcome/:action" => "welcome#:action"
 
   resources :images
 

@@ -1,15 +1,15 @@
 <%= form_tag(:action => "login") do %>
-<table>
+<table class="login_form">
   <tr>
     <td>Login name:</td>
     <td><%= text_field_tag "login_name" %></td>
   </tr>
-  
+
   <tr>
     <td>Password:</td>
     <td><%= password_field_tag "password" %></td>
   </tr>
-  
+
   <tr>
     <td></td>
     <td><%= submit_tag "LOGIN" %></td>

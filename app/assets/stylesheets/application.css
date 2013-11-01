@@ -14,3 +14,7 @@ h1.title {
 div.logout {
   text-align: right;
 }
+
+table.login_form {
+    margin-top: 50px;
+}
