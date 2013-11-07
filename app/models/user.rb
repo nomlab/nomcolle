@@ -2,6 +2,10 @@ class User < ActiveRecord::Base
   has_many :histories
   has_many :reviews
   has_many :subscription_requests
+  has_many :bowling_scores
+  has_many :bowling_team_memberships
+  has_many :bowling_team, :through => :bowling_team_memberships
+  belongs_to :room
 
   validates_uniqueness_of :login_name
   validates_presence_of :login_name, :password, :name
