@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  score: 1
+  member_id: 1
+  bowling_match_id: 1
+  bowling_team_id: 1
+  game_number: 1
+
+two:
+  score: 1
+  member_id: 1
+  bowling_match_id: 1
+  bowling_team_id: 1
+  game_number: 1

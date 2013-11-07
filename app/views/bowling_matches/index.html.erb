@@ -1,0 +1,35 @@
+<h1>Listing bowling_matches</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Start time</th>
+      <th>End time</th>
+      <th>Filename</th>
+      <th>Steward</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @bowling_matches.each do |bowling_match| %>
+      <tr>
+        <td><%= bowling_match.name %></td>
+        <td><%= bowling_match.start_time %></td>
+        <td><%= bowling_match.end_time %></td>
+        <td><%= bowling_match.filename %></td>
+        <td><%= bowling_match.steward %></td>
+        <td><%= link_to 'Show', bowling_match %></td>
+        <td><%= link_to 'Edit', edit_bowling_match_path(bowling_match) %></td>
+        <td><%= link_to 'Destroy', bowling_match, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Bowling match', new_bowling_match_path %>

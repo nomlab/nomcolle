@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  start_time: 2013-11-07 15:58:41
+  end_time: 2013-11-07 15:58:41
+  filename: MyString
+  steward: MyString
+
+two:
+  name: MyString
+  start_time: 2013-11-07 15:58:41
+  end_time: 2013-11-07 15:58:41
+  filename: MyString
+  steward: MyString

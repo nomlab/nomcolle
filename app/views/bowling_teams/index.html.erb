@@ -1,0 +1,31 @@
+<h1>Listing bowling_teams</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Bowling match</th>
+      <th>Room</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @bowling_teams.each do |bowling_team| %>
+      <tr>
+        <td><%= bowling_team.name %></td>
+        <td><%= bowling_team.bowling_match_id %></td>
+        <td><%= bowling_team.room_id %></td>
+        <td><%= link_to 'Show', bowling_team %></td>
+        <td><%= link_to 'Edit', edit_bowling_team_path(bowling_team) %></td>
+        <td><%= link_to 'Destroy', bowling_team, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Bowling team', new_bowling_team_path %>

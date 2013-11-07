@@ -1,4 +1,10 @@
 Nomcolle::Application.routes.draw do
+  resources :rooms
+
+  resources :bowling_teams
+
+  resources :bowling_matches
+
   get "individual/index"
 
   root :to => "welcome#index"

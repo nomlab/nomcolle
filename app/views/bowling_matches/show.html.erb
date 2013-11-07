@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @bowling_match.name %>
+</p>
+
+<p>
+  <strong>Start time:</strong>
+  <%= @bowling_match.start_time %>
+</p>
+
+<p>
+  <strong>End time:</strong>
+  <%= @bowling_match.end_time %>
+</p>
+
+<p>
+  <strong>Filename:</strong>
+  <%= @bowling_match.filename %>
+</p>
+
+<p>
+  <strong>Steward:</strong>
+  <%= @bowling_match.steward %>
+</p>
+
+<%= link_to 'Edit', edit_bowling_match_path(@bowling_match) %> |
+<%= link_to 'Back', bowling_matches_path %>

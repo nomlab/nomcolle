@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @bowling_team.name %>
+</p>
+
+<p>
+  <strong>Bowling match:</strong>
+  <%= @bowling_team.bowling_match_id %>
+</p>
+
+<p>
+  <strong>Room:</strong>
+  <%= @bowling_team.room_id %>
+</p>
+
+<%= link_to 'Edit', edit_bowling_team_path(@bowling_team) %> |
+<%= link_to 'Back', bowling_teams_path %>

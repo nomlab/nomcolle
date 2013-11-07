@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  bowling_match_id: 1
+  room_id: 1
+
+two:
+  name: MyString
+  bowling_match_id: 1
+  room_id: 1

@@ -1,0 +1,37 @@
+<%= form_for(@bowling_match) do |f| %>
+  <% if @bowling_match.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@bowling_match.errors.count, "error") %> prohibited this bowling_match from being saved:</h2>
+
+      <ul>
+      <% @bowling_match.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :start_time %><br>
+    <%= f.datetime_select :start_time %>
+  </div>
+  <div class="field">
+    <%= f.label :end_time %><br>
+    <%= f.datetime_select :end_time %>
+  </div>
+  <div class="field">
+    <%= f.label :filename %><br>
+    <%= f.text_field :filename %>
+  </div>
+  <div class="field">
+    <%= f.label :steward %><br>
+    <%= f.text_field :steward %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
