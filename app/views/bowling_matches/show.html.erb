@@ -1,18 +1,38 @@
 <p id="notice"><%= notice %></p>
+<h1><%= @bowling_match.name %></h1>
 
 <p>
-  <strong>Name:</strong>
-  <%= @bowling_match.name %>
+  <strong>Date:</strong>
+  <%= @bowling_match.start_time.strftime("%Y/%m/%d %H:%M") + "-" + @bowling_match.end_time.strftime("%H:%M")%>
 </p>
 
 <p>
-  <strong>Start time:</strong>
-  <%= @bowling_match.start_time %>
+  <h2>Result</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+	<th>Rank</th>
+	<th>Team</th>
+	<th>Average Score</th>
+      <tr>
+    </thead>
+    <tbody>
+    <% rank = 1 %>
+      <% @bowling_teams.each do |team| %>
+      <tr>
+	<td><%= rank %></td>
+	<td><%= team.name %></td>
+	<td><%= team.average_score %></td>
+      </tr>
+      <% rank += 1 %>
+      <% end %>
+    </tbody>
+  </table>
 </p>
 
+
 <p>
-  <strong>End time:</strong>
-  <%= @bowling_match.end_time %>
+<h2>participants</h2>
 </p>
 
 <p>

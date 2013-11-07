@@ -32,7 +32,7 @@
 
     <!-- For all other devices -->
     <!-- Size should be 32 x 32 pixels -->
-    <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
+    <!-- <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %> -->
 
     <%= javascript_include_tag "application" %>
   </head>
@@ -71,6 +71,7 @@
           <div class="container nav-collapse">
             <ul class="nav">
               <li><%= link_to "ブックリスト",  :controller => "books", :action => "index"%></li>
+	      <li><%= link_to "ボウリング大会",  :controller => "bowling_matches", :action => "index"%></li>
               <li><%= link_to "個人ページ",  :controller => "individual", :action => "index"  %></li>
             </ul>
           </div><!--/.nav-collapse -->

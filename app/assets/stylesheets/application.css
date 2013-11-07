@@ -18,3 +18,9 @@ div.logout {
 table.login_form {
     margin-top: 50px;
 }
+
+@media (min-width: 980px){
+    body{
+	padding-top: 60px;
+    }
+}

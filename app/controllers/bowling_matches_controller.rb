@@ -10,6 +10,10 @@ class BowlingMatchesController < ApplicationController
   # GET /bowling_matches/1
   # GET /bowling_matches/1.json
   def show
+    @bowling_match = BowlingMatch.find(params[:id])
+    @bowling_teams = @bowling_match.bowling_teams
+    #@members = @bowling_teams.users
+    @scores = @bowling_match.bowling_scores
   end
 
   # GET /bowling_matches/new
