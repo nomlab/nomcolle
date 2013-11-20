@@ -7,6 +7,11 @@
 </p>
 
 <p>
+  <strong>GameNumber:</strong>
+  <%= @bowling_match.game_number%>
+</p>
+
+<p>
   <h2>Result</h2>
   <table class="table table-striped">
     <thead>
@@ -30,9 +35,34 @@
   </table>
 </p>
 
-
 <p>
 <h2>participants</h2>
+<%= link_to 'Manage participants', :action => "manage_bowling_participants", :id => @bowling_match.id %>
+<%= link_to 'Edit scores', :action => "record_bowling_match_scores", :id => @bowling_match.id %>
+<table class="table table-striped">
+<tr>
+  <th>Name</th>
+    <% (1..@game_number).each do |num| %>
+      <th>Game<%= num %></th>
+    <% end %>
+    <th>Total</th>
+    <th>Average</th>
+    <th></th>
+</tr>
+<tr>
+  <% @participants_list.each do |participant| %>
+     <td><%= participant.name %></td>
+     <% scores = participant.bowling_scores.map{|score| score.score} %>
+     <% scores.each do |score| %>
+       <td><%= score %></td>
+     <% end %>
+     <td><%= total = scores.compact.empty? ? nil : scores.compact.sum %></td>
+     <td><%= average = total.blank? ? nil : total/scores.size %></td>
+     <% bowling_score_ids = participant.bowling_scores.map{|score| score.id} %>
+     <td><%= button_to "destroy", { :action => "destroy_bowling_scores", :score_ids => bowling_score_ids }, :confirm => "本当に削除しますか?", :method => :delete, :class => "btn btn-danger" %></td>
+</tr>
+<% end %>
+</table>
 </p>
 
 <p>

@@ -1,0 +1,12 @@
+<table class="table table-striped">
+
+  <%= form_tag("register_participants") do %>
+  <% @users.each do |user| %>
+  <tr>
+    <td><%= check_box_tag "participant[#{user.id}]", "true" %></td>
+    <td><%= label_tag user.name %></td>
+  </tr>
+  <% end %>
+</table>
+<%= submit_tag("Submit")%>
+<% end %>

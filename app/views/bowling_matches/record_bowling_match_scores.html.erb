@@ -1,0 +1,16 @@
+<h1>Recored <%= @bowling_match.name %>`s scores</h1>
+<table class="table table-striped">
+
+  <%= form_tag("update_bowling_match_scores") do %>
+  <% @participants_list.each do |user| %>
+  <tr>
+    <td><%= label_tag user.name %></td>
+    <% (1..@game_number).each do |num| %>
+     <% score = BowlingScore.find_by_user_id_and_bowling_match_id_and_game_number(user.id, @bowling_match.id, num)%>
+      <td><%= number_field_tag "scores[#{user.id}][]", value = score.score%></td>
+    <% end %>
+  </tr>
+  <% end %>
+</table>
+<%= submit_tag("Submit")%>
+<% end %>

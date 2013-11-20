@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class BowlingMatchesController < ApplicationController
   before_action :set_bowling_match, only: [:show, :edit, :update, :destroy]
 
@@ -11,9 +12,9 @@ class BowlingMatchesController < ApplicationController
   # GET /bowling_matches/1.json
   def show
     @bowling_match = BowlingMatch.find(params[:id])
+    @game_number = @bowling_match.game_number
     @bowling_teams = @bowling_match.bowling_teams
-    #@members = @bowling_teams.users
-    @scores = @bowling_match.bowling_scores
+    @participants_list = @bowling_match.users.uniq {|user| user.id}
   end
 
   # GET /bowling_matches/new
@@ -65,6 +66,55 @@ class BowlingMatchesController < ApplicationController
     end
   end
 
+  def manage_bowling_participants
+    @users = User.all
+  end
+
+  def register_participants
+    @bowling_match = BowlingMatch.find(params[:id])
+    params[:participant].keys.each do |participant_id|
+      BowlingScore.create_by_game_number(participant_id, @bowling_match.id, @bowling_match.game_number)
+    end
+    redirect_to @bowling_match
+  end
+
+  def record_bowling_match_scores
+    @bowling_match = BowlingMatch.find(params[:id])
+    @game_number = @bowling_match.game_number
+    @participants_list = @bowling_match.users.uniq {|user| user.id}
+  end
+
+  def update_bowling_match_scores
+    @bowling_match = BowlingMatch.find(params[:id])
+    @game_number = @bowling_match.game_number
+    values = []
+    ActiveRecord::Base.transaction do
+      params[:scores].keys.each do |user_id|
+        user = User.find(user_id)
+        (1..@game_number).each do |num|
+          user.bowling_scores[num-1].score = params[:scores][user_id][num-1]
+          values << user.bowling_scores[num-1].save
+        end
+      end
+    end
+    redirect_to @bowling_match, notice: 'Bowling match scores were successfully updated.'
+    return
+    rescue  => e
+    render action: 'record_bowling_match_scores'
+  end
+
+  # DELETE /bowling_matches/1
+  # DELETE /bowling_matches/1.json
+  def destroy_bowling_scores
+    @bowling_match = BowlingMatch.find(params[:id])
+    @bowling_scores = BowlingScore.find(params[:score_ids])
+    @bowling_scores.map{ |score| score.destroy }
+    respond_to do |format|
+      format.html { redirect_to @bowling_match }
+      format.json { head :no_content }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_bowling_match
@@ -73,6 +123,6 @@ class BowlingMatchesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bowling_match_params
-      params.require(:bowling_match).permit(:name, :start_time, :end_time, :filename, :steward)
+      params.require(:bowling_match).permit(:name, :start_time, :end_time, :filename, :steward, :game_number)
     end
 end

@@ -4,6 +4,12 @@ Nomcolle::Application.routes.draw do
   resources :bowling_teams
 
   resources :bowling_matches
+  get "bowling_matches/:id/manage_bowling_participants", to: "bowling_matches#manage_bowling_participants"
+  post "bowling_matches/:id/register_participants", to: "bowling_matches#register_participants"
+  get "bowling_matches/:id/record_bowling_match_scores", to: "bowling_matches#record_bowling_match_scores"
+  post "bowling_matches/:id/update_bowling_match_scores", to: "bowling_matches#update_bowling_match_scores"
+
+  delete "bowling_matches/:id/destroy_bowling_scores", to: "bowling_matches#destroy_bowling_scores"
 
   get "individual/index"
 
