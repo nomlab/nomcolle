@@ -47,6 +47,8 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
+	    <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
           </a>
           <a class="brand" href="#">のむこれ</a>
           <div class="container nav-collapse">
@@ -54,6 +56,11 @@
               <li><%= link_to "ブックリスト",  :controller => "books", :action => "index"%></li>
 	      <li><%= link_to "ボウリング大会",  :controller => "bowling_matches", :action => "index"%></li>
               <li><%= link_to "個人ページ",  :controller => "individual", :action => "index"  %></li>
+	      <% if User.current %>
+	      <li><%= link_to "ログアウト",  :controller => "welcome", :action => "logout"  %></li>
+	      <% else %>
+	      <li><%= link_to "ログイン",  :controller => "welcome", :action => "login"%></li>
+              <% end %>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -66,7 +73,6 @@
             <div class="well sidebar-nav">
               <h3>Sidemenu</h3>
               <ul class="nav nav-list">
-
 		<%= yield :sidebar %>
               </ul>
             </div><!--/.well -->
