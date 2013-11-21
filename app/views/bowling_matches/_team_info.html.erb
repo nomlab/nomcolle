@@ -1,0 +1,12 @@
+<tr>
+  <td><%= team.name %></td>
+  <td></td>
+  <% (1..game_number).each do |num| %>
+    <td></td>
+  <% end %>
+  <td><%= team.total_score %></td>
+  <td><%= team.average_score %></td>
+  <td><%= button_to "Edit", {:action => "edit", :controller => "bowling_teams", :id => team.id}, :method => :get, :class => "btn btn-small btn-info" %></td>
+</tr>
+
+

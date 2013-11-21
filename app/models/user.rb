@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   has_many :subscription_requests
   has_many :bowling_scores
   has_many :bowling_team_memberships
-  has_many :bowling_team, :through => :bowling_team_memberships
+  has_many :bowling_teams, :through => :bowling_team_memberships
   belongs_to :room
 
   validates_uniqueness_of :login_name
@@ -28,5 +28,9 @@ class User < ActiveRecord::Base
 
   def self.current
     @current_user
+  end
+
+  def bowling_scores_of_bowling_match(bowling_match_id)
+    BowlingScore.where("user_id is ? AND bowling_match_id is ? ", self.id, bowling_match_id)
   end
 end

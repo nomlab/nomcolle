@@ -1,12 +1,37 @@
+<script>
+  $(function(){
+    $(":radio").on("click", function(){
+      $(this).parent().siblings().find(":checkbox").prop("checked", true);
+    });
+  });
+
+  $(function(){
+    $(":checkbox").on("click", function(){
+      $(this).parent().siblings().find(":radio").prop("checked", false);
+    });
+  });
+</script>
+
+<h1>Manage bowling participants</h1>
 <table class="table table-striped">
 
+  <tr>
+    <th><i class="icon-check"></i></th>
+    <th>Name</th>
+    <% @bowling_teams.each do |team| %>
+    <td><%= team.name %></td>
+    <% end %>
+  </tr>
   <%= form_tag("register_participants") do %>
   <% @users.each do |user| %>
   <tr>
     <td><%= check_box_tag "participant[#{user.id}]", "true" %></td>
-    <td><%= label_tag user.name %></td>
+    <td><%= user.name %></td>
+    <% @bowling_teams.each do |team| %>
+    <td><%= radio_button_tag "team[#{user.id}]", team.id %></td>
+    <% end %>
   </tr>
   <% end %>
 </table>
-<%= submit_tag("Submit")%>
+<%= submit_tag("Submit", :class => "btn btn-default")%>
 <% end %>

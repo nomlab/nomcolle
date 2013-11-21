@@ -16,12 +16,10 @@
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :bowling_match_id %><br>
-    <%= f.number_field :bowling_match_id %>
+    <%= f.hidden_field :bowling_match_id%>
   </div>
   <div class="field">
-    <%= f.label :room_id %><br>
-    <%= f.number_field :room_id %>
+    <%= f.hidden_field :room_id %>
   </div>
   <div class="actions">
     <%= f.submit %>

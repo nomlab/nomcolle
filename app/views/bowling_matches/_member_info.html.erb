@@ -1,0 +1,7 @@
+<td><%= participant.name %></td>
+<% scores = participant.bowling_scores_of_bowling_match(bowling_match_id).map{|score| score.score} %>
+<% scores.each do |score| %>
+  <td><%= score %></td>
+<% end %>
+<td><%= total = scores.compact.empty? ? nil : scores.compact.sum %></td>
+<td><%= average = total.blank? ? nil : total/scores.size %></td>

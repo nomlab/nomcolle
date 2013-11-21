@@ -1,0 +1,18 @@
+<table class="table table-striped">
+<tr>
+  <th>Name</th>
+    <% (1..game_number).each do |num| %>
+      <th>Game<%= num %></th>
+    <% end %>
+    <th>Total</th>
+    <th>Average</th>
+    <th></th>
+</tr>
+<tr>
+  <% participants_list.each do |participant| %>
+  <%= render :partial => "member_info", :locals => {:participant => participant, :bowling_match_id => bowling_match_id}%>
+     <% bowling_score_ids = participant.bowling_scores.map{|score| score.id} %>
+     <td><%= button_to "destroy", { :action => "destroy_bowling_scores", :score_ids => bowling_score_ids }, :confirm => "本当に削除しますか?", :method => :delete, :class => "btn btn-small btn-danger" %></td>
+</tr>
+<% end %>
+</table>

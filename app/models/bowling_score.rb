@@ -5,7 +5,9 @@ class BowlingScore < ActiveRecord::Base
 
   def self.create_by_game_number(user_id, bowling_match_id, game_number = 1)
     (1..game_number).each do |num|
-      BowlingScore.create(:user_id => user_id, :bowling_match_id => bowling_match_id, :game_number => num)
+      if self.find_by_user_id_and_bowling_match_id_and_game_number(user_id, bowling_match_id, num) == nil
+        self.create(:user_id => user_id, :bowling_match_id => bowling_match_id, :game_number => num)
+      end
     end
   end
 end

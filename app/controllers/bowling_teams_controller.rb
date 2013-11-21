@@ -14,7 +14,7 @@ class BowlingTeamsController < ApplicationController
 
   # GET /bowling_teams/new
   def new
-    @bowling_team = BowlingTeam.new
+    @bowling_team = BowlingTeam.new(:bowling_match_id => params[:bowling_match_id])
   end
 
   # GET /bowling_teams/1/edit
@@ -25,14 +25,15 @@ class BowlingTeamsController < ApplicationController
   # POST /bowling_teams.json
   def create
     @bowling_team = BowlingTeam.new(bowling_team_params)
+    @bowling_match = BowlingMatch.find(bowling_team_params["bowling_match_id"])
 
     respond_to do |format|
       if @bowling_team.save
-        format.html { redirect_to @bowling_team, notice: 'Bowling team was successfully created.' }
+        format.html { redirect_to @bowling_match, notice: 'Bowling team was successfully created.' }
         format.json { render action: 'show', status: :created, location: @bowling_team }
       else
         format.html { render action: 'new' }
-        format.json { render json: @bowling_team.errors, status: :unprocessable_entity }
+        format.json { render json: @bowling_match.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -40,13 +41,14 @@ class BowlingTeamsController < ApplicationController
   # PATCH/PUT /bowling_teams/1
   # PATCH/PUT /bowling_teams/1.json
   def update
+    @bowling_match = BowlingMatch.find(bowling_team_params["bowling_match_id"])
     respond_to do |format|
       if @bowling_team.update(bowling_team_params)
-        format.html { redirect_to @bowling_team, notice: 'Bowling team was successfully updated.' }
+        format.html { redirect_to @bowling_match, notice: 'Bowling team was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
-        format.json { render json: @bowling_team.errors, status: :unprocessable_entity }
+        format.json { render json: @bowling_match.errors, status: :unprocessable_entity }
       end
     end
   end

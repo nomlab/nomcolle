@@ -1,3 +1,16 @@
+<% content_for :sidebar do %>
+<li class="nav-header"><font size="4">Team action</font></li>
+<font size="3">
+  <%= link_to 'Create team', {:controller => "bowling_teams", :action => "new", :bowling_match_id => @bowling_match.id}%></br>
+</font>
+</br>
+<li class="nav-header"><font size="4">Participant action</font></li>
+<font size="3">
+  <%= link_to 'Manage participants', :action => "manage_bowling_participants", :id => @bowling_match.id %></br>
+  <%= link_to 'Edit scores', :action => "record_bowling_match_scores", :id => @bowling_match.id %></br>
+</font>
+<% end %>
+
 <p id="notice"><%= notice %></p>
 <h1><%= @bowling_match.name %></h1>
 
@@ -35,34 +48,19 @@
   </table>
 </p>
 
+<% if @bowling_match.team_number != 0 %>
 <p>
-<h2>participants</h2>
-<%= link_to 'Manage participants', :action => "manage_bowling_participants", :id => @bowling_match.id %>
-<%= link_to 'Edit scores', :action => "record_bowling_match_scores", :id => @bowling_match.id %>
-<table class="table table-striped">
-<tr>
-  <th>Name</th>
-    <% (1..@game_number).each do |num| %>
-      <th>Game<%= num %></th>
-    <% end %>
-    <th>Total</th>
-    <th>Average</th>
-    <th></th>
-</tr>
-<tr>
-  <% @participants_list.each do |participant| %>
-     <td><%= participant.name %></td>
-     <% scores = participant.bowling_scores.map{|score| score.score} %>
-     <% scores.each do |score| %>
-       <td><%= score %></td>
-     <% end %>
-     <td><%= total = scores.compact.empty? ? nil : scores.compact.sum %></td>
-     <td><%= average = total.blank? ? nil : total/scores.size %></td>
-     <% bowling_score_ids = participant.bowling_scores.map{|score| score.id} %>
-     <td><%= button_to "destroy", { :action => "destroy_bowling_scores", :score_ids => bowling_score_ids }, :confirm => "本当に削除しますか?", :method => :delete, :class => "btn btn-danger" %></td>
-</tr>
+<h2>Teams</h2>
+<%= render :partial => "team_list", :locals => {:bowling_teams => @bowling_teams, :game_number => @game_number, :bowling_match_id => @bowling_match.id}%>
+
+</p>
 <% end %>
-</table>
+
+<p>
+<h2>Participants</h2>
+
+<%= render :partial => "participant_list", :locals => {:participants_list => @participants_list, :game_number => @game_number, :bowling_match_id => @bowling_match.id}%>
+
 </p>
 
 <p>

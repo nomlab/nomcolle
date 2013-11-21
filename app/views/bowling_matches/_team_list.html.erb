@@ -1,0 +1,20 @@
+<table class="table table-striped">
+<tr>
+  <th>Team Name</th>
+  <th>Member Name</th>
+  <% (1..game_number).each do |num| %>
+    <th>Game<%= num %></th>
+  <% end %>
+  <th>Total</th>
+  <th>Average</th>
+  <th></th>
+</tr>
+<% bowling_teams.each do |team| %>
+  <%= render :partial => "team_info", :locals => {:team => team, :game_number => game_number}%>
+  <% team.users.each do |participant|%>
+    <tr>
+      <td></td><%= render :partial => "member_info", :locals => {:participant => participant, :bowling_match_id => bowling_match_id}%><td></td>
+    </tr>
+  <% end %>
+<% end %>
+</table>

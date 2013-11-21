@@ -38,25 +38,6 @@
   </head>
 
 <body>
-
-<!-- <div class="header"> -->
-<!--   <h1 class="title">のむこれ</h1> -->
-<!--   <div class="logout"> -->
-<!--     <%= button_to "ログアウト", :controller => "welcome", :action => "logout" %> -->
-<!--     <%= link_to "ブックリスト", :controller => "books", :action => "index" %> -->
-<!--     <%= link_to "個人ページ", :controller => "individual", :action => "index" %> -->
-<!--   </div> -->
-<!-- </div> -->
-
-<!-- <p style="color: red"><%= flash[:error] %></p> -->
-<!-- <p style="color: green"><%= flash[:notice] %></p> -->
-
-<!-- <%= yield %> -->
-
-<!-- </body> -->
-
-
-
   <body>
 
     <div class="navbar navbar-fixed-top">
@@ -81,21 +62,19 @@
 
     <div class="container">
         <div class="row">
+          <div class="span3">
+            <div class="well sidebar-nav">
+              <h3>Sidemenu</h3>
+              <ul class="nav nav-list">
+
+		<%= yield :sidebar %>
+              </ul>
+            </div><!--/.well -->
+          </div><!--/span-->
           <div class="span9">
             <%= bootstrap_flash %>
             <%= yield %>
           </div>
-          <div class="span3">
-            <div class="well sidebar-nav">
-              <h3>Sidebar</h3>
-              <ul class="nav nav-list">
-                <li class="nav-header">Sidebar</li>
-                <li><%= link_to "Link1", "/path1"  %></li>
-                <li><%= link_to "Link2", "/path2"  %></li>
-                <li><%= link_to "Link3", "/path3"  %></li>
-              </ul>
-            </div><!--/.well -->
-          </div><!--/span-->
         </div><!--/row-->
 
       <footer>

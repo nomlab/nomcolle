@@ -30,9 +30,10 @@ class BowlingMatchesController < ApplicationController
   # POST /bowling_matches.json
   def create
     @bowling_match = BowlingMatch.new(bowling_match_params)
-
     respond_to do |format|
       if @bowling_match.save
+        teams = BowlingTeam.new_team_by_team_number(@bowling_match.id, @bowling_match.team_number)
+        @bowling_match.bowling_teams = teams
         format.html { redirect_to @bowling_match, notice: 'Bowling match was successfully created.' }
         format.json { render action: 'show', status: :created, location: @bowling_match }
       else
@@ -67,13 +68,28 @@ class BowlingMatchesController < ApplicationController
   end
 
   def manage_bowling_participants
+    @bowling_match = BowlingMatch.find(params[:id])
     @users = User.all
+    @bowling_teams = @bowling_match.bowling_teams
   end
 
   def register_participants
     @bowling_match = BowlingMatch.find(params[:id])
-    params[:participant].keys.each do |participant_id|
-      BowlingScore.create_by_game_number(participant_id, @bowling_match.id, @bowling_match.game_number)
+    if params[:participant] != nil
+      match_participant_ids = params[:participant].keys
+      match_participant_ids.each do |participant_id|
+        BowlingScore.create_by_game_number(participant_id, @bowling_match.id, @bowling_match.game_number)
+      end
+    end
+    if params[:team] != nil
+      team_participant_ids = params[:team].keys
+      team_participant_ids.each do |participant_id|
+        if BowlingTeamMembership.where("user_id IS ? AND bowling_team_id IS ?", participant_id, params[:team]["#{participant_id}"].to_i) == []
+          BowlingTeamMembership.create(:user_id => participant_id, :bowling_team_id => params[:team]["#{participant_id}"].to_i)
+        end
+        scores = BowlingScore.where("user_id IS ? AND bowling_match_id IS ?", participant_id, @bowling_match.id)
+        BowlingTeam.find(params[:team]["#{participant_id}"].to_i).bowling_scores += scores
+      end
     end
     redirect_to @bowling_match
   end
@@ -123,6 +139,6 @@ class BowlingMatchesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bowling_match_params
-      params.require(:bowling_match).permit(:name, :start_time, :end_time, :filename, :steward, :game_number)
+      params.require(:bowling_match).permit(:name, :start_time, :end_time, :filename, :steward, :game_number, :team_number)
     end
 end
