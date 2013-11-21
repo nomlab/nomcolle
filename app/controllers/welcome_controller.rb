@@ -3,6 +3,9 @@ class WelcomeController < ApplicationController
   def index
   end
 
+  def login_form
+  end
+
   def login
     if request.get?
       flash.now[:notice] ="Please login first."
