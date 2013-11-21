@@ -59,7 +59,7 @@
 	      <% if User.current %>
 	      <li><%= link_to "ログアウト",  :controller => "welcome", :action => "logout"  %></li>
 	      <% else %>
-	      <li><%= link_to "ログイン",  :controller => "welcome", :action => "login"%></li>
+	      <li><%= link_to "ログイン",  :controller => "welcome", :action => "login_form"%></li>
               <% end %>
             </ul>
           </div><!--/.nav-collapse -->
