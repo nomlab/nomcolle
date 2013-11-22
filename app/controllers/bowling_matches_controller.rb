@@ -103,20 +103,19 @@ class BowlingMatchesController < ApplicationController
   def update_bowling_match_scores
     @bowling_match = BowlingMatch.find(params[:id])
     @game_number = @bowling_match.game_number
-    values = []
     ActiveRecord::Base.transaction do
       params[:scores].keys.each do |user_id|
         user = User.find(user_id)
         (1..@game_number).each do |num|
           user.bowling_scores[num-1].score = params[:scores][user_id][num-1]
-          values << user.bowling_scores[num-1].save
+          user.bowling_scores[num-1].save!
         end
       end
     end
     redirect_to @bowling_match, notice: 'Bowling match scores were successfully updated.'
     return
-    rescue  => e
-    render action: 'record_bowling_match_scores'
+  rescue  => e
+    redirect_to @bowling_match, :flash => {error: 'Score is wrong.'}
   end
 
   # DELETE /bowling_matches/1
