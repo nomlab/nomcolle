@@ -112,6 +112,10 @@ class BowlingMatchesController < ApplicationController
         end
       end
     end
+    @bowling_match.bowling_teams.all.each do |team|
+      team.calculate_total_score
+      team.calculate_average_score
+    end
     redirect_to @bowling_match, notice: 'Bowling match scores were successfully updated.'
     return
   rescue  => e

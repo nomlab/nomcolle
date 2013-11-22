@@ -69,15 +69,15 @@
 
     <div class="container">
         <div class="row">
-          <div class="span3">
-            <div class="well sidebar-nav">
+          <div class="span4">
+            <div class="well sidebar-nav bs-docs-sidenav">
               <h3>Sidemenu</h3>
               <ul class="nav nav-list">
 		<%= yield :sidebar %>
               </ul>
             </div><!--/.well -->
           </div><!--/span-->
-          <div class="span9">
+          <div class="span8">
             <%= bootstrap_flash %>
             <%= yield %>
           </div>
@@ -88,6 +88,8 @@
       </footer>
 
     </div> <!-- /container -->
+
+    <script src="js/bootstrap.min.js"></script>
 
   </body>
 </html>

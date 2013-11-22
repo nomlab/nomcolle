@@ -13,14 +13,20 @@ class BowlingTeam < ActiveRecord::Base
     return teams
   end
 
-  def total_score
-    scores = self.bowling_scores.map {|bowling_score| bowling_score.score }
-    scores.compact.empty? ? nil : scores.sum
+  def self.top_n_of_bowling_match_id(n, bowling_match_id)
+    self.where("bowling_match_id IS ?", bowling_match_id).order("average_score desc").take(n)
   end
 
-  def average_score
+  def calculate_total_score
+    scores = self.bowling_scores.map {|bowling_score| bowling_score.score }
+    self.total_score = (scores.compact.empty? ? nil : scores.sum)
+    self.save
+  end
+
+  def calculate_average_score
     users_number = self.users.size
-    users_number == 0 || total_score == nil ? nil : total_score / users_number
+    self.average_score = (users_number == 0 || total_score == nil ? nil : total_score / users_number)
+    self.save
   end
 
 end

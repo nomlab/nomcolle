@@ -26,6 +26,7 @@
 
 <p>
   <h2>Result</h2>
+  <h3>Top 3 Teams</h3>
   <table class="table table-striped">
     <thead>
       <tr>
@@ -35,12 +36,36 @@
       <tr>
     </thead>
     <tbody>
-    <% rank = 1 %>
-      <% @bowling_teams.each do |team| %>
+      <% rank = 1 %>
+      <% BowlingTeam.top_n_of_bowling_match_id(3, @bowling_match.id).each do |team| %>
       <tr>
 	<td><%= rank %></td>
 	<td><%= team.name %></td>
 	<td><%= team.average_score %></td>
+      </tr>
+      <% rank += 1 %>
+      <% end %>
+    </tbody>
+  </table>
+  <h3>Top 3 Participants</h3>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+	<th>Rank</th>
+	<th>Name</th>
+	<% (1..@game_number).each do |num| %>
+	  <th>Game<%= num %></th>
+	<% end %>
+	<th>Total Score</th>
+	<th>Average Score</th>
+      <tr>
+    </thead>
+    <tbody>
+      <% rank = 1 %>
+      <% User.top_n_of_bowling_match_id(3, @bowling_match.id).each do |participant| %>
+      <tr>
+	<td><%= rank %></td>
+	<%= render :partial => "member_info", :locals => {:participant => participant, :bowling_match_id => @bowling_match.id}%>
       </tr>
       <% rank += 1 %>
       <% end %>
