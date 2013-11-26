@@ -1,15 +1,22 @@
 <h1>Recored <%= @bowling_match.name %>`s scores</h1>
 <%= form_tag("update_bowling_match_scores") do %>
 <table class="table table-striped">
-  <% @participants_list.each do |user| %>
+  <% @bowling_teams.each do |team|%>
   <tr>
-    <td><%= label_tag user.name %></td>
-    <% (1..@game_number).each do |num| %>
-     <% score = BowlingScore.find_by_user_id_and_bowling_match_id_and_game_number(user.id, @bowling_match.id, num)%>
-      <td><%= number_field_tag "scores[#{user.id}][]", value = score.score, :id => "scores_#{user.id}_#{num}" %></td>
+    <td><%= label_tag team.name %></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <% team.users.each do |player| %>
+  <tr>
+    <td><%= label_tag player.name %></td>
+	 <% (1..@game_number).each do |num| %>
+         <% score = BowlingScore.find_by_user_id_and_bowling_match_id_and_game_number(player.id, @bowling_match.id, num) %>
+    <td><%= number_field_tag "scores[#{player.id}][]", value = score.score, :id => "scores_#{player.id}_#{num}" %></td>
     <% end %>
   </tr>
   <% end %>
-</table>
-<%= submit_tag("Submit")%>
+  <% end %>
+ </table>
+<%= submit_tag("Submit") %>
 <% end %>

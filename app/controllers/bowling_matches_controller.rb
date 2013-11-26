@@ -97,6 +97,7 @@ class BowlingMatchesController < ApplicationController
   def record_bowling_match_scores
     @bowling_match = BowlingMatch.find(params[:id])
     @game_number = @bowling_match.game_number
+    @bowling_teams = @bowling_match.bowling_teams
     @participants_list = @bowling_match.users.uniq {|user| user.id}
   end
 
