@@ -1,3 +1,16 @@
+<script>
+  $(function(){
+     $("tr.bowling-team-member").css("display", "none");
+  })
+
+  $(function(){
+    $(".bowling-team-list tr.bowling-team").click(function(){
+      $(this).siblings("tr.bowling-team-member"+"."+$(this).attr("id")).toggle(function(){
+      })
+    })
+  })
+</script>
+
 <% content_for :sidebar do %>
 <li class="nav-header"><font size="4">Team action</font></li>
 <font size="3">
