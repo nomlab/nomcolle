@@ -13,6 +13,7 @@
 </script>
 
 <h1>Manage bowling participants</h1>
+<%= form_tag "register_participants" do %>
 <table class="table table-striped">
 
   <tr>
@@ -22,7 +23,7 @@
     <td><%= team.name %></td>
     <% end %>
   </tr>
-  <%= form_tag("register_participants") do %>
+<div>test</div>
   <% @users.each do |user| %>
   <tr>
     <td><%= check_box_tag "participant[#{user.id}]", "true" %></td>
