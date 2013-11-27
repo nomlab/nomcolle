@@ -12,8 +12,8 @@
   });
 </script>
 
-<h1>Manage bowling participants</h1>
-<%= form_tag "register_participants" do %>
+<h1>Manage bowling players</h1>
+<%= form_tag "register_players" do %>
 <table class="table table-striped">
 
   <tr>
@@ -26,7 +26,7 @@
 <div>test</div>
   <% @users.each do |user| %>
   <tr>
-    <td><%= check_box_tag "participant[#{user.id}]", "true" %></td>
+    <td><%= check_box_tag "player[#{user.id}]", "true" %></td>
     <td><%= user.name %></td>
     <% @bowling_teams.each do |team| %>
     <td><%= radio_button_tag "team[#{user.id}]", team.id %></td>

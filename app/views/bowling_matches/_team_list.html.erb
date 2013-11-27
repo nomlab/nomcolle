@@ -11,9 +11,9 @@
 </tr>
 <% bowling_teams.each do |team| %>
   <%= render :partial => "team_info", :locals => {:team => team, :game_number => game_number}%>
-  <% team.users.each do |participant|%>
+  <% team.users.each do |player|%>
     <tr class="bowling-team-member team-<%=team.id%>">
-      <td></td><%= render :partial => "member_info", :locals => {:participant => participant, :bowling_match_id => bowling_match_id}%><td></td>
+      <td></td><%= render :partial => "member_info", :locals => {:player => player, :bowling_match_id => bowling_match_id}%><td></td>
     </tr>
   <% end %>
 <% end %>

@@ -17,9 +17,9 @@
   <%= link_to 'Create team', {:controller => "bowling_teams", :action => "new", :bowling_match_id => @bowling_match.id}%></br>
 </font>
 </br>
-<li class="nav-header"><font size="4">Participant action</font></li>
+<li class="nav-header"><font size="4">Player action</font></li>
 <font size="3">
-  <%= link_to 'Manage participants', :action => "manage_bowling_participants", :id => @bowling_match.id %></br>
+  <%= link_to 'Manage players', :action => "manage_bowling_players", :id => @bowling_match.id %></br>
   <%= link_to 'Edit scores', :action => "record_bowling_match_scores", :id => @bowling_match.id %></br>
 </font>
 <% end %>
@@ -60,7 +60,7 @@
       <% end %>
     </tbody>
   </table>
-  <h3>Top 3 Participants</h3>
+  <h3>Top 3 Players</h3>
   <table class="table table-striped">
     <thead>
       <tr>
@@ -75,10 +75,10 @@
     </thead>
     <tbody>
       <% rank = 1 %>
-      <% User.top_n_of_bowling_match_id(3, @bowling_match.id).each do |participant| %>
+      <% User.top_n_of_bowling_match_id(3, @bowling_match.id).each do |player| %>
       <tr>
 	<td><%= rank %></td>
-	<%= render :partial => "member_info", :locals => {:participant => participant, :bowling_match_id => @bowling_match.id}%>
+	<%= render :partial => "member_info", :locals => {:player => player, :bowling_match_id => @bowling_match.id}%>
       </tr>
       <% rank += 1 %>
       <% end %>
@@ -95,9 +95,9 @@
 <% end %>
 
 <p>
-<h2>Participants</h2>
+<h2>Players</h2>
 
-<%= render :partial => "participant_list", :locals => {:participants_list => @participants_list, :game_number => @game_number, :bowling_match_id => @bowling_match.id}%>
+<%= render :partial => "player_list", :locals => {:players_list => @players_list, :game_number => @game_number, :bowling_match_id => @bowling_match.id}%>
 
 </p>
 

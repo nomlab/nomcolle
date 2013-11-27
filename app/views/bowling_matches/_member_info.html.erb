@@ -1,5 +1,5 @@
-<td><%= participant.name %></td>
-<% scores = participant.bowling_scores_of_bowling_match(bowling_match_id).map{|score| score.score} %>
+<td><%= player.name %></td>
+<% scores = player.bowling_scores_of_bowling_match(bowling_match_id).map{|score| score.score} %>
 <% scores.each do |score| %>
   <td><%= score %></td>
 <% end %>

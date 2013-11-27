@@ -14,7 +14,7 @@ class BowlingMatchesController < ApplicationController
     @bowling_match = BowlingMatch.find(params[:id])
     @game_number = @bowling_match.game_number
     @bowling_teams = @bowling_match.bowling_teams
-    @participants_list = @bowling_match.users.uniq {|user| user.id}
+    @players_list = @bowling_match.users.uniq {|user| user.id}
   end
 
   # GET /bowling_matches/new
@@ -67,28 +67,28 @@ class BowlingMatchesController < ApplicationController
     end
   end
 
-  def manage_bowling_participants
+  def manage_bowling_players
     @bowling_match = BowlingMatch.find(params[:id])
     @users = User.all
     @bowling_teams = @bowling_match.bowling_teams
   end
 
-  def register_participants
+  def register_players
     @bowling_match = BowlingMatch.find(params[:id])
-    if params[:participant] != nil
-      match_participant_ids = params[:participant].keys
-      match_participant_ids.each do |participant_id|
-        BowlingScore.create_by_game_number(participant_id, @bowling_match.id, @bowling_match.game_number)
+    if params[:player] != nil
+      match_player_ids = params[:player].keys
+      match_player_ids.each do |player_id|
+        BowlingScore.create_by_game_number(player_id, @bowling_match.id, @bowling_match.game_number)
       end
     end
     if params[:team] != nil
-      team_participant_ids = params[:team].keys
-      team_participant_ids.each do |participant_id|
-        if BowlingTeamMembership.where("user_id IS ? AND bowling_team_id IS ?", participant_id, params[:team]["#{participant_id}"].to_i) == []
-          BowlingTeamMembership.create(:user_id => participant_id, :bowling_team_id => params[:team]["#{participant_id}"].to_i)
+      team_player_ids = params[:team].keys
+      team_player_ids.each do |player_id|
+        if BowlingTeamMembership.where("user_id IS ? AND bowling_team_id IS ?", player_id, params[:team]["#{player_id}"].to_i) == []
+          BowlingTeamMembership.create(:user_id => player_id, :bowling_team_id => params[:team]["#{player_id}"].to_i)
         end
-        scores = BowlingScore.where("user_id IS ? AND bowling_match_id IS ?", participant_id, @bowling_match.id)
-        BowlingTeam.find(params[:team]["#{participant_id}"].to_i).bowling_scores += scores
+        scores = BowlingScore.where("user_id IS ? AND bowling_match_id IS ?", player_id, @bowling_match.id)
+        BowlingTeam.find(params[:team]["#{player_id}"].to_i).bowling_scores += scores
       end
     end
     redirect_to @bowling_match
@@ -98,7 +98,7 @@ class BowlingMatchesController < ApplicationController
     @bowling_match = BowlingMatch.find(params[:id])
     @game_number = @bowling_match.game_number
     @bowling_teams = @bowling_match.bowling_teams
-    @participants_list = @bowling_match.users.uniq {|user| user.id}
+    @players_list = @bowling_match.users.uniq {|user| user.id}
   end
 
   def update_bowling_match_scores

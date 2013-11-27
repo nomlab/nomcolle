@@ -31,22 +31,22 @@ class User < ActiveRecord::Base
   end
 
   def self.top_n_of_bowling_match_id(n, bowling_match_id)
-    participants = BowlingMatch.find(bowling_match_id).users.uniq {|user| user.id}
+    players = BowlingMatch.find(bowling_match_id).users.uniq {|user| user.id}
     scores = Hash.new(Array.new)
-    participants.each do |participant|
-      participant_total_score = 0
-      participant.bowling_scores_of_bowling_match(bowling_match_id).each do |bowling_score|
-        participant_total_score += bowling_score.score
+    players.each do |player|
+      player_total_score = 0
+      player.bowling_scores_of_bowling_match(bowling_match_id).each do |bowling_score|
+        player_total_score += bowling_score.score
       end
-      scores[participant.id.to_s] = participant_total_score
+      scores[player.id.to_s] = player_total_score
     end
     sorted_scores = scores.sort {|(k1, v1), (k2, v2)| v2 <=> v1 }
-    top_n_participants_ids = Array.new
+    top_n_players_ids = Array.new
     sorted_scores.take(n).each do |id_and_score|
-      top_n_participants_ids << id_and_score.first
+      top_n_players_ids << id_and_score.first
     end
     users = []
-    top_n_participants_ids.each do |id|
+    top_n_players_ids.each do |id|
       users << self.find(id.to_i)
     end
     return users
