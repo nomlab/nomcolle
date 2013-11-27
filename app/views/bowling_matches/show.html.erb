@@ -1,12 +1,37 @@
 <script>
   $(function(){
      $("tr.bowling-team-member").css("display", "none");
+     $("tr.non-top3-teams").css("display", "none");
+     $("tr.non-top3-players").css("display", "none");
   })
 
   $(function(){
     $(".bowling-team-list tr.bowling-team").click(function(){
-      $(this).siblings("tr.bowling-team-member"+"."+$(this).attr("id")).toggle(function(){
-      })
+      $(this).siblings("tr.bowling-team-member"+"."+$(this).attr("id")).toggle();
+    })
+  })
+
+  $(function(){
+    $(":button.ranked-team").click(function(){
+      $("tr.non-top3-teams").toggle()
+      text = $(":button.ranked-team").text()
+      if(text == "all"){
+        $(":button.ranked-team").text("top3")
+      }else{
+        $(":button.ranked-team").text("all")
+      }
+    })
+  })
+
+  $(function(){
+    $(":button.ranked-player").click(function(){
+      $("tr.non-top3-players").toggle();
+      text = $(":button.ranked-player").text()
+      if(text == "all"){
+        $(":button.ranked-player").text("top3")
+      }else{
+        $(":button.ranked-player").text("all")
+      }
     })
   })
 </script>
@@ -39,8 +64,8 @@
 
 <p>
   <h2>Result</h2>
-  <h3>Top 3 Teams</h3>
-  <table class="table table-striped">
+  <h3>Teams <button class="ranked-team btn btn-small btn-primary">all</button></h3>
+  <table class="table table-striped ranked-team-list">
     <thead>
       <tr>
 	<th>Rank</th>
@@ -50,8 +75,8 @@
     </thead>
     <tbody>
       <% rank = 1 %>
-      <% BowlingTeam.top_n_of_bowling_match_id(3, @bowling_match.id).each do |team| %>
-      <tr>
+      <% BowlingTeam.top_n_of_bowling_match_id(@bowling_match.bowling_teams.size, @bowling_match.id).each do |team| %>
+      <tr class=<%= rank<=3? "top3-teams" : "non-top3-teams"%>>
 	<td><%= rank %></td>
 	<td><%= team.name %></td>
 	<td><%= team.average_score %></td>
@@ -60,8 +85,8 @@
       <% end %>
     </tbody>
   </table>
-  <h3>Top 3 Players</h3>
-  <table class="table table-striped">
+  <h3>Players <button class="ranked-player btn btn-small btn-primary">all</button></h3>
+  <table class="table table-striped ranked-player-list">
     <thead>
       <tr>
 	<th>Rank</th>
@@ -75,8 +100,8 @@
     </thead>
     <tbody>
       <% rank = 1 %>
-      <% User.top_n_of_bowling_match_id(3, @bowling_match.id).each do |player| %>
-      <tr>
+      <% User.top_n_of_bowling_match_id(@bowling_match.users.size, @bowling_match.id).each do |player| %>
+      <tr class=<%= rank<=3? "top3-players" : "non-top3-players"%>>
 	<td><%= rank %></td>
 	<%= render :partial => "member_info", :locals => {:player => player, :bowling_match_id => @bowling_match.id}%>
       </tr>
