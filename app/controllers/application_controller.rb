@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
     return true if User.current
 
     session[:jumpto] = request.parameters
-    redirect_to :controller => "welcome", :action => "index"
+    redirect_to :controller => "welcome", :action => "login_form"
     return false
   end
 
