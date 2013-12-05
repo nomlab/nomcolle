@@ -1,3 +1,11 @@
+<% content_for :sidebar do %>
+<li class="nav-header"><font size="4">Bowling Match action</font></li>
+<font size="3">
+  <%= link_to 'New Bowling match', new_bowling_match_path %>
+</font>
+</br>
+<% end %>
+
 <h1>Bowling Matches</h1>
 
 <table class="table table-striped">
@@ -12,5 +20,3 @@
 </table>
 
 <br>
-
-<%= link_to 'New Bowling match', new_bowling_match_path %>
