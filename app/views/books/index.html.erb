@@ -1,6 +1,14 @@
+<% content_for :sidebar do %>
+<font size="3">
+  <%= link_to 'New Book', new_book_path %><br />
+  <%= link_to 'New Book from Plural ISBN', new_from_plural_isbn_path %><br />
+  <%= link_to 'New Book from ISBN', new_from_isbn_path %><br/ >
+</font>
+<% end %>
+
 <h1>Listing books</h1>
 
-<table class="books">
+<table class="table table-striped">
   <tr>
     <th class="thum"><%= tc("word", "thumbnail") %></th>
     <th class="title"><%= tc("word", "title_and_author") %></th>
@@ -21,7 +29,7 @@
     </td>
 
     <td class="command">
-        <%= link_to 'Amazon', book.amazon_url %><br />
+        <%#= link_to 'Amazon', book.amazon_url %><br />
         <%= link_to tc("word", "show"), book %><br />
         <%= link_to tc("word", "edit"), edit_book_path(book) %><br />
         <%= link_to tc("word", "destroy"), book, confirm: 'Are you sure?',
@@ -43,23 +51,7 @@
     </td>
   </tr>
 <% end %>
-
-<br />
-<div id="side">
-  <div id="side_link">
-    <div id="side_item">
-      <%= link_to 'New Book', new_book_path %>
-    </div>
-    <div id="side_item">
-      <%= link_to 'New Book from ISBN', new_from_isbn_path %><br/ >
-    </div>
-    <div id="side_item">
-      <%= link_to 'New Book from Plural ISBN', new_from_plural_isbn_path %><br />
-    </div>
-  </div>
-</div>
 </table>
-
 <br/>
 <br/>
 <%= will_paginate(@books) %>
