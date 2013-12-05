@@ -40,7 +40,7 @@ class BooksController < ApplicationController
   # POST /books
   # POST /books.json
   def create
-    @book = Book.new(params[:book])
+    @book = Book.new(book_params)
 
     respond_to do |format|
       if @book.save
@@ -59,7 +59,7 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
 
     respond_to do |format|
-      if @book.update_attributes(params[:book])
+      if @book.update_attributes(book_params)
         format.html { redirect_to @book, notice: 'Book was successfully updated.' }
         format.json { head :ok }
       else
@@ -210,4 +210,14 @@ class BooksController < ApplicationController
     end
   end
 
+  private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_book
+      @book = Book.find(params[:id])
+    end
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def book_params
+      params.require(:book).permit(:title, :author, :publisher, :isbn13, :price, :page, :width, :height, :depth, :status, :created_at, :updated_at)
+    end
 end

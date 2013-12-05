@@ -40,7 +40,7 @@ class SubscriptionRequestsController < ApplicationController
   # POST /subscription_requests
   # POST /subscription_requests.json
   def create
-    @subscription_request = SubscriptionRequest.new(params[:subscription_request])
+    @subscription_request = SubscriptionRequest.new(subscription_request_params)
     if @subscription_request.book.status == 1
       @subscription_request.errors.add(@subscription_request.book.title, " is rented")
     end
@@ -98,4 +98,15 @@ class SubscriptionRequestsController < ApplicationController
       format.json { render json: @subscription_request }
     end
   end
+
+  private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_subscription_request
+      @subscription_request = SubscriptionRequest.find(params[:id])
+    end
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def subscription_request_params
+      params.require(:subscription_request).permit(:book_id, :user_id, :description, :created_at, :updated_at, :return_date, :rental_date)
+    end
 end

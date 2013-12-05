@@ -40,7 +40,7 @@ class HistoriesController < ApplicationController
   # POST /histories
   # POST /histories.json
   def create
-    @history = History.new(params[:history])
+    @history = History.new(history_params)
 
     respond_to do |format|
       if @history.save
@@ -80,4 +80,15 @@ class HistoriesController < ApplicationController
       format.json { head :ok }
     end
   end
+
+  private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_history
+      @history = History.find(params[:id])
+    end
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def history_params
+      params.require(:history).permit(:book_id, :user_id, :action, :created_at, :updated_at)
+    end
 end
