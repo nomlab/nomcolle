@@ -57,4 +57,11 @@ Nomcolle::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+
+  # Bootstrap
+  config.assets.precompile += %w(bootstrap.min.js)
+  config.assets.precompile += %w(bootstrap.min.css)
+
+  # Disable Rails's static asset server (Apache or nginx will already do this)
+  config.serve_static_assets = true
 end
