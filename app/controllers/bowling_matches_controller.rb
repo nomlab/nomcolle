@@ -135,6 +135,17 @@ class BowlingMatchesController < ApplicationController
     end
   end
 
+  def import_from_excel
+
+  end
+
+  def update_from_excel
+    @bowling_match = BowlingMatch.find(params[:id])
+    @excel = params[:file]
+    @bowling_match.import_from_excel(@excel)
+    redirect_to @bowling_match, notice: 'Updated'
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_bowling_match

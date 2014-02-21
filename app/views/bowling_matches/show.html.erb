@@ -46,6 +46,7 @@
 <font size="3">
   <%= link_to 'Manage players', :action => "manage_bowling_players", :id => @bowling_match.id %></br>
   <%= link_to 'Edit scores', :action => "record_bowling_match_scores", :id => @bowling_match.id %></br>
+  <%= link_to 'Import from excel', :action => "import_from_excel", :id => @bowling_match.id %></br>
 </font>
 <% end %>
 

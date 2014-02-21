@@ -1,0 +1,5 @@
+<h1>Import from excel</h1>
+<%= form_tag("update_from_excel", :multipart => true) do %>
+<%= file_field_tag :file %><br><br>
+<%= submit_tag("Submit", :class => "btn btn-default") %>
+<% end %>

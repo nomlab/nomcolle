@@ -55,4 +55,7 @@ gem 'twitter-bootstrap-rails'
 gem 'execjs'
 gem 'therubyracer'
 
+# Excel
+gem 'roo'
+
 gem 'amazon-ecs', '2.2.0'

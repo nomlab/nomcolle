@@ -8,6 +8,8 @@ Nomcolle::Application.routes.draw do
   post "bowling_matches/:id/register_players", to: "bowling_matches#register_players"
   get "bowling_matches/:id/record_bowling_match_scores", to: "bowling_matches#record_bowling_match_scores"
   post "bowling_matches/:id/update_bowling_match_scores", to: "bowling_matches#update_bowling_match_scores"
+  get "bowling_matches/:id/import_from_excel", to: "bowling_matches#import_from_excel"
+  post "bowling_matches/:id/update_from_excel", to: "bowling_matches#update_from_excel"
 
   delete "bowling_matches/:id/destroy_bowling_scores", to: "bowling_matches#destroy_bowling_scores"
 
