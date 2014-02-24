@@ -2,8 +2,8 @@ class User < ActiveRecord::Base
   has_many :histories
   has_many :reviews
   has_many :subscription_requests
-  has_many :bowling_scores
-  has_many :bowling_team_memberships
+  has_many :bowling_scores, :dependent => :delete_all
+  has_many :bowling_team_memberships, :dependent => :delete_all
   has_many :bowling_teams, :through => :bowling_team_memberships
   belongs_to :room
 

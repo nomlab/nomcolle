@@ -23,13 +23,21 @@
     <td><%= team.name %></td>
     <% end %>
   </tr>
-<div>test</div>
+
   <% @users.each do |user| %>
   <tr>
-    <td><%= check_box_tag "player[#{user.id}]", "true" %></td>
+    <% if user.bowling_scores.where(["bowling_match_id = ?", @bowling_match.id]).present? %>
+      <td><%= check_box_tag "player[#{user.id}]", "true", {:checked => true} %></td>
+    <% else %>
+      <td><%= check_box_tag "player[#{user.id}]", "true" %></td>
+    <% end %>
     <td><%= user.name %></td>
     <% @bowling_teams.each do |team| %>
-    <td><%= radio_button_tag "team[#{user.id}]", team.id %></td>
+      <% if user.bowling_teams.where(["bowling_team_id = ?", team.id]).present? %>
+        <td><%= radio_button_tag "team[#{user.id}]", team.id, {:checked => true} %></td>
+      <% else %>
+        <td><%= radio_button_tag "team[#{user.id}]", team.id %></td>
+      <% end %>
     <% end %>
   </tr>
   <% end %>

@@ -123,12 +123,18 @@ class BowlingMatchesController < ApplicationController
     redirect_to @bowling_match, :flash => {error: 'Score is wrong.'}
   end
 
-  # DELETE /bowling_matches/1
-  # DELETE /bowling_matches/1.json
   def destroy_bowling_scores
     @bowling_match = BowlingMatch.find(params[:id])
     @bowling_scores = BowlingScore.find(params[:score_ids])
-    @bowling_scores.map{ |score| score.destroy }
+    @bowling_scores.map{ |score|
+      if score.bowling_team.present?
+        if score.bowling_team.bowling_team_memberships.where(["user_id = ?", params[:player_id]]).present?
+          membership = score.bowling_team.bowling_team_memberships.where(["user_id = ?", params[:player_id]]).first
+          membership.destroy
+        end
+      end
+      score.destroy
+    }
     respond_to do |format|
       format.html { redirect_to @bowling_match }
       format.json { head :no_content }

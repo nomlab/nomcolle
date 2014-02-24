@@ -1,6 +1,6 @@
 class BowlingMatch < ActiveRecord::Base
-  has_many :bowling_teams
-  has_many :bowling_scores
+  has_many :bowling_teams, :dependent => :delete_all
+  has_many :bowling_scores, :dependent => :delete_all
   has_many :users, :through => :bowling_scores
 
   def import_from_excel(file)

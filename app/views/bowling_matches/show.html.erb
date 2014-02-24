@@ -39,9 +39,9 @@
 <% content_for :sidebar do %>
 <li class="nav-header"><font size="4">Match action</font></li>
 <font size="3">
-  <%= link_to 'Edit match', {:controller => "bowling_matches", :action => "edit", :bowling_match_id => @bowling_match.id}%></br>
-  <%= link_to 'Destroy match', {:controller => "bowling_matches", :action => "destroy",
-  :bowling_match_id => @bowling_match.id}, :confirm => "Are you sure you want to delete bowling match?"%></br>
+  <%= link_to 'Edit match', {:controller => "bowling_matches", :action => "edit", :bowling_match_id => @bowling_match.id} %></br>
+  <%= link_to 'Destroy match', {:controller => "bowling_matches", :action => "destroy", :bowling_match_id => @bowling_match.id},
+  :confirm => "Are you sure you want to delete bowling match?", :method => :delete %></br>
 </font>
 </br>
 <li class="nav-header"><font size="4">Team action</font></li>

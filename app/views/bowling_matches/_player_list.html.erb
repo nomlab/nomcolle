@@ -12,7 +12,7 @@
   <% players_list.each do |player| %>
   <%= render :partial => "member_info", :locals => {:player => player, :bowling_match_id => bowling_match_id}%>
      <% bowling_score_ids = player.bowling_scores.map{|score| score.id} %>
-     <td><%= button_to "destroy", { :action => "destroy_bowling_scores", :score_ids => bowling_score_ids }, :confirm => "本当に削除しますか?", :method => :delete, :class => "btn btn-small btn-danger" %></td>
+     <td><%= button_to "destroy", { :action => "destroy_bowling_scores", :score_ids => bowling_score_ids, :player_id => player.id }, :confirm => "本当に削除しますか?", :method => :delete, :class => "btn btn-small btn-danger" %></td>
 </tr>
 <% end %>
 </table>
