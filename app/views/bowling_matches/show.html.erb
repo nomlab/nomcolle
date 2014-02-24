@@ -37,6 +37,13 @@
 </script>
 
 <% content_for :sidebar do %>
+<li class="nav-header"><font size="4">Match action</font></li>
+<font size="3">
+  <%= link_to 'Edit match', {:controller => "bowling_matches", :action => "edit", :bowling_match_id => @bowling_match.id}%></br>
+  <%= link_to 'Destroy match', {:controller => "bowling_matches", :action => "destroy",
+  :bowling_match_id => @bowling_match.id}, :confirm => "Are you sure you want to delete bowling match?"%></br>
+</font>
+</br>
 <li class="nav-header"><font size="4">Team action</font></li>
 <font size="3">
   <%= link_to 'Create team', {:controller => "bowling_teams", :action => "new", :bowling_match_id => @bowling_match.id}%></br>
@@ -64,7 +71,13 @@
 </p>
 
 <p>
+  <strong>Steward:</strong>
+  <%= @bowling_match.steward %>
+</p>
+
+<p>
   <h2>Result</h2>
+  <% if @bowling_match.team_number != 0 %>
   <h3>Teams <button class="ranked-team btn btn-small btn-primary">all</button></h3>
   <table class="table table-striped ranked-team-list">
     <thead>
@@ -86,6 +99,8 @@
       <% end %>
     </tbody>
   </table>
+  <% end %>
+  <% if @bowling_match.users.length != 0 %>
   <h3>Players <button class="ranked-player btn btn-small btn-primary">all</button></h3>
   <table class="table table-striped ranked-player-list">
     <thead>
@@ -110,32 +125,23 @@
       <% end %>
     </tbody>
   </table>
+  <% end %>
 </p>
 
 <% if @bowling_match.team_number != 0 %>
 <p>
 <h2>Teams</h2>
 <%= render :partial => "team_list", :locals => {:bowling_teams => @bowling_teams, :game_number => @game_number, :bowling_match_id => @bowling_match.id}%>
-
 </p>
 <% end %>
 
+<% if @bowling_match.users.length != 0 %>
 <p>
 <h2>Players</h2>
-
 <%= render :partial => "player_list", :locals => {:players_list => @players_list, :game_number => @game_number, :bowling_match_id => @bowling_match.id}%>
-
 </p>
+<% end %>
 
-<p>
-  <strong>Filename:</strong>
-  <%= @bowling_match.filename %>
-</p>
 
-<p>
-  <strong>Steward:</strong>
-  <%= @bowling_match.steward %>
-</p>
 
-<%= link_to 'Edit', edit_bowling_match_path(@bowling_match) %> |
 <%= link_to 'Back', bowling_matches_path %>
