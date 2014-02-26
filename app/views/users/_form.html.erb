@@ -24,6 +24,10 @@
     <%= f.text_field :password %>
   </div>
   <div class="field">
+    <%= f.label :shoe_size %><br />
+    <%= f.text_field :shoe_size, :value => number_with_precision(f.object.shoe_size, :precision => 2) %>
+  </div>
+  <div class="field">
     <%= f.label :description %><br />
     <%= f.text_field :description %>
   </div>
