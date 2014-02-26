@@ -55,6 +55,7 @@
             <ul class="nav">
               <li><%= link_to "ブックリスト",  :controller => "books", :action => "index"%></li>
 	      <li><%= link_to "ボウリング大会",  :controller => "bowling_matches", :action => "index"%></li>
+              <li><%= link_to "ユーザ一覧",  :controller => "users" %></li>
               <li><%= link_to "個人ページ",  :controller => "individual", :action => "index"  %></li>
 	      <% if User.current %>
 	      <li><%= link_to "ログアウト",  :controller => "welcome", :action => "logout"  %></li>
