@@ -17,11 +17,11 @@
   </div>
   <div class="field">
     <%= f.label :start_time %><br>
-    <%= f.datetime_select :start_time %>
+    <%= f.datetime_select :start_time, :start_year => 2007, :end_year => Time.now.year + 1, :minute_step => 10 %>
   </div>
   <div class="field">
     <%= f.label :end_time %><br>
-    <%= f.datetime_select :end_time %>
+    <%= f.datetime_select :end_time, :start_year => 2007, :end_year => Time.now.year + 1, :minute_step => 10  %>
   </div>
   <div class="field">
     <%= f.label :filename %><br>
