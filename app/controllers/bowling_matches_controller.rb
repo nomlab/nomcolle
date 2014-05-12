@@ -5,8 +5,7 @@ class BowlingMatchesController < ApplicationController
   # GET /bowling_matches
   # GET /bowling_matches.json
   def index
-    BowlingMatch.order(:start_time)
-    @bowling_matches = BowlingMatch.all
+    @bowling_matches = BowlingMatch.order(:start_time)
   end
 
   # GET /bowling_matches/1
