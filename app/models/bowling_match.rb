@@ -19,7 +19,7 @@ class BowlingMatch < ActiveRecord::Base
     1.upto(xls.last_row) do |row_number|
       user_data = make_user_data_from_row(xls.sheet(0).row(row_number))
       if user_data != nil
-        data[user_data["team_name"]] << user_data if user_data["game1_score"] != 0 && user_data["game2_score"] != 0
+        data[user_data["team_name"]] << user_data if user_data["game1_score"] != 0 || user_data["game2_score"] != 0
       end
     end
 
